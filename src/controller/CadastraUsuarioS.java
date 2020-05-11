@@ -21,6 +21,7 @@ public class CadastraUsuarioS extends HttpServlet {
         
 		Paciente p = new Paciente();
 		CadastraPaciente cp = new CadastraPaciente();
+		String teste;
 		boolean cadastrou = false;
 		
         String nome = request.getParameter("nome");
