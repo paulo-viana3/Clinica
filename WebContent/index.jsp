@@ -14,7 +14,7 @@
   <!--Favicon-->
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-<title>Insert title here</title>
+<title>Login</title>
 <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 
 </head>
@@ -54,53 +54,35 @@
 <section class="form">
 <center>
  <div class="section-title">
-        <h3>Cadastro de Usuário</h3>
+ 	<br>
+ 	<br>
+ 	<br>
+        <h3>Login</h3>
  </div>
  <br>
-<form name="contact_form" class="default-form contact-form" action="cadastra" method="POST">
+<form name="contact_form" class="default-form contact-form" action="login" method="POST">
         <div class="row">
 
-                <div class="form-group mb-2">
-                    <input type="text" name="nome" placeholder="Nome" required="">
-                </div>
-                
-                <div class="form-group mb-2">
+                <div class="form-group">
                     <input type="text" name="cpf" placeholder="CPF" required="">
                 </div>
-               
-                <div class="form-group mb-2">
-                    <input type="text" name="data" placeholder="Data de Nascimento" required="">
-                </div>
-                
-                <div class="form-group mb-2">
-                    <input type="text" name="telefone" placeholder="Telefone Celular" required="">
-                </div>
-                
-                <div class="form-group mb-2">
-                    <input type="text" name="email" placeholder="E-mail" required="">
-                </div>
-               
-                <div class="form-group ">
+                <br>
+                <div class="form-group">
                     <input type="password" name="senha" placeholder="Senha" required="">
                 </div>
-                
-                <div class="form-group">
-                    <input type="password" name="csenha" placeholder="Confirmar Senha" required="">
-                </div>
-                <br>
-                
-           
-          
+          		<br>
+          		 <div class="section-title">
+          			<a href='cadastra.jsp'>Não possui cadastro? Clique aqui.</a>
+          		</div>
+          		<br>
             <div class="col-md-12 col-sm-12 col-xs-12">
-          
                 <div class="form-group text-center">
-                    <button type="submit" class="btn-style-one">Cadastrar</button>
+                    <button type="submit" class="btn-style-one">Entrar</button>
                 </div>
             </div>
         </div>
     </form>
    </center>
    </section>
-
 </body>
 </html>

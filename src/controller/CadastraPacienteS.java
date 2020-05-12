@@ -45,7 +45,7 @@ public class CadastraPacienteS extends HttpServlet {
         
         RequestDispatcher rd = null;
         request.setAttribute("resultado", cadastrou);
-        rd = request.getRequestDispatcher("login.jsp");
+        rd = request.getRequestDispatcher("index.jsp");
        
         try {
             rd.forward(request, response);

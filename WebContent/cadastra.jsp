@@ -14,7 +14,7 @@
   <!--Favicon-->
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-<title>Login</title>
+<title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 
 </head>
@@ -54,35 +54,53 @@
 <section class="form">
 <center>
  <div class="section-title">
- 	<br>
- 	<br>
- 	<br>
-        <h3>Login</h3>
+        <h3>Cadastro de Usuário</h3>
  </div>
  <br>
-<form name="contact_form" class="default-form contact-form" action="login" method="GET">
+<form name="contact_form" class="default-form contact-form" action="cadastra" method="POST">
         <div class="row">
 
-                <div class="form-group">
+                <div class="form-group mb-2">
+                    <input type="text" name="nome" placeholder="Nome" required="">
+                </div>
+                
+                <div class="form-group mb-2">
                     <input type="text" name="cpf" placeholder="CPF" required="">
                 </div>
-                <br>
-                <div class="form-group">
+               
+                <div class="form-group mb-2">
+                    <input type="text" name="data" placeholder="Data de Nascimento" required="">
+                </div>
+                
+                <div class="form-group mb-2">
+                    <input type="text" name="telefone" placeholder="Telefone Celular" required="">
+                </div>
+                
+                <div class="form-group mb-2">
+                    <input type="text" name="email" placeholder="E-mail" required="">
+                </div>
+               
+                <div class="form-group ">
                     <input type="password" name="senha" placeholder="Senha" required="">
                 </div>
-          		<br>
-          		 <div class="section-title">
-          			<a href='index.jsp'>Não possui cadastro? Clique aqui.</a>
-          		</div>
-          		<br>
+                
+                <div class="form-group">
+                    <input type="password" name="csenha" placeholder="Confirmar Senha" required="">
+                </div>
+                <br>
+                
+           
+          
             <div class="col-md-12 col-sm-12 col-xs-12">
+          
                 <div class="form-group text-center">
-                    <button type="submit" class="btn-style-one">Entrar</button>
+                    <button type="submit" class="btn-style-one">Cadastrar</button>
                 </div>
             </div>
         </div>
     </form>
    </center>
    </section>
+
 </body>
 </html>
