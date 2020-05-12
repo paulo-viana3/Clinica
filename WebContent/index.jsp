@@ -57,7 +57,7 @@
         <h3>Cadastro de Usuário</h3>
  </div>
  <br>
-<form name="contact_form" class="default-form contact-form" action="cadastra" method="GET">
+<form name="contact_form" class="default-form contact-form" action="cadastra" method="POST">
         <div class="row">
 
                 <div class="form-group mb-2">
