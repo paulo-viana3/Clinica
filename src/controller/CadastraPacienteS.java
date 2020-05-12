@@ -15,13 +15,12 @@ import dao.CadastraPaciente;
 import model.Paciente;
 
 @WebServlet("/cadastra")
-public class CadastraUsuarioS extends HttpServlet {
+public class CadastraPacienteS extends HttpServlet {
 
 	private void processarRequisicao(HttpServletRequest request, HttpServletResponse response) throws ServletException, ParseException {
         
 		Paciente p = new Paciente();
 		CadastraPaciente cp = new CadastraPaciente();
-		String teste;
 		boolean cadastrou = false;
 		
         String nome = request.getParameter("nome");
@@ -46,7 +45,7 @@ public class CadastraUsuarioS extends HttpServlet {
         
         RequestDispatcher rd = null;
         request.setAttribute("resultado", cadastrou);
-        rd = request.getRequestDispatcher("pagina2.jsp");
+        rd = request.getRequestDispatcher("login.jsp");
        
         try {
             rd.forward(request, response);

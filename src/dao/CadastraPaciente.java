@@ -10,8 +10,6 @@ import model.Paciente;
 public class CadastraPaciente {
 
 	public boolean novo(Paciente p)  {
-		
-
 			Connection conn = null;
 			
 			try {
@@ -19,7 +17,6 @@ public class CadastraPaciente {
 				String sql = "insert into tbpaciente (nome,cpf,telContato,email,dataNasc,senha)" +
 								"values (?,?,?,?,?,?)";
 				
-
 				conn = Conexao.getConexaoMySQL();
 				
 			/*	
@@ -30,7 +27,6 @@ public class CadastraPaciente {
 				
 				PreparedStatement pstm = conn.prepareStatement(sql);
 
-				
 				pstm.setString(1, p.getNome());
 				pstm.setString(2, p.getCpf());
 				pstm.setString(3, p.getTelContato());
@@ -38,23 +34,17 @@ public class CadastraPaciente {
 				pstm.setDate(5, p.getDataNasc());
 				pstm.setString(6, p.getSenha());
 
-
 				pstm.execute();
 
 				return true;
 				
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}finally {
 				Conexao.FecharConexao();
 			}
 			return false;
-		
-			
 		}
-
-
 	}
 
 

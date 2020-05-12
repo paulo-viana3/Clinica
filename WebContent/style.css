@@ -71,6 +71,22 @@ p {
   font-family: "Source Sans Pro", sans-serif;
 }
 
+.section-title h4 {
+  font-size: 20px;
+  line-height: 25px;
+  color: #222222;
+  font-weight: 700;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.section-title a{
+  font-size: 20px;
+  line-height: 25px;
+  color: #222222;
+  font-weight: 700;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
 .section-title span {
   color: #222222;
   font-weight: 400;
@@ -1853,6 +1869,10 @@ li {
   margin-bottom: 20px;
 }
 
+.mb-2 {
+  margin-bottom: ($spacer * .5) !important;
+}
+
 .form-group input, .contact-area textarea {
   position: relative;
   width: 25%;
@@ -2356,7 +2376,8 @@ li {
 .about-section .section-title h3:before {
   position: absolute;
   content: '';
-  background: #ececec;
+  background: #fff;
+  <!--#ececec--> 
   bottom: 0px;
   left: 50%;
   margin-left: -120px;
