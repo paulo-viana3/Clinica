@@ -2376,8 +2376,7 @@ li {
 .about-section .section-title h3:before {
   position: absolute;
   content: '';
-  background: #fff;
-  <!--#ececec--> 
+  background: #ececec;
   bottom: 0px;
   left: 50%;
   margin-left: -120px;
