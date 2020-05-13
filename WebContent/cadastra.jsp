@@ -16,6 +16,20 @@
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+<script>
+function validatePassword(){
+var password = document.getElementById("password")
+, confirm_password = document.getElementById("confirm_password");
+if(password.value != confirm_password.value) {
+  confirm_password.setCustomValidity("Senhas diferentes!");
+} else {
+  confirm_password.setCustomValidity('');
+}
+}
+
+password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+</script>
 
 </head>
 
@@ -81,11 +95,11 @@
                 </div>
                
                 <div class="form-group ">
-                    <input type="password" name="senha" placeholder="Senha" required="">
+                    <input type="password" name="password" placeholder="Senha" id="password" required="">
                 </div>
                 
                 <div class="form-group">
-                    <input type="password" name="csenha" placeholder="Confirmar Senha" required="">
+                    <input type="password" name="confirm_password" placeholder="Confirmar Senha" id="confirm_password" required="">
                 </div>
                 <br>
                 
@@ -94,7 +108,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
           
                 <div class="form-group text-center">
-                    <button type="submit" class="btn-style-one">Cadastrar</button>
+                    <button type="submit" class="btn-style-one" onclick="validatePassword()">Cadastrar</button>
                 </div>
             </div>
         </div>

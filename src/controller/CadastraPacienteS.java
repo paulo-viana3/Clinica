@@ -28,7 +28,7 @@ public class CadastraPacienteS extends HttpServlet {
         String data = request.getParameter("data");
         String telefone = request.getParameter("telefone");
         String email = request.getParameter("email");
-        String senha = request.getParameter("csenha");
+        String senha = request.getParameter("confirm_password");
         
 		
 		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
