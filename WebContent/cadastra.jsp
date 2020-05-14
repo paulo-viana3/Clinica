@@ -34,6 +34,20 @@ confirm_password.onkeyup = validatePassword;
 </head>
 
 <body>
+<%
+String res = null;
+
+res = String.valueOf(request.getAttribute("resultado"));
+
+if(res.equals("false")){
+
+	out.print("<script>"); 
+	out.print("alert('Dados inválidos');"); 
+	out.print("</script>");
+
+}
+%>
+
 <section class="header-uper">
       <div class="container clearfix">
             <div class="logo">

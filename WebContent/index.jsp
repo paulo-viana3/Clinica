@@ -17,9 +17,33 @@
 <title>Login</title>
 <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 
+
 </head>
 
 <body>
+
+<%
+String res = null;
+
+res = String.valueOf(request.getAttribute("resultado"));
+
+if(res.equals("false")){
+
+	out.print("<script>"); 
+	out.print("alert('Usuário ou Senha incorretos');"); 
+	out.print("</script>");
+
+}else if(res.equals("true")){
+	out.print("<script>"); 
+	out.print("alert('Usuário cadastrado com sucesso');"); 
+	out.print("</script>");
+
+}else{
+	
+}
+res = null;
+%>
+
 <section class="header-uper">
       <div class="container clearfix">
             <div class="logo">
@@ -60,7 +84,7 @@
         <h3>Login</h3>
  </div>
  <br>
-<form name="contact_form" class="default-form contact-form" action="login" method="POST">
+<form name="contact_form" class="default-form contact-form" action="entrar" method="POST">
         <div class="row">
 
                 <div class="form-group">

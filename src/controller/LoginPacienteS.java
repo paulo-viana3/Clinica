@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import dao.LoginPaciente;
 import model.Paciente;
 
-@WebServlet("/login")
+@WebServlet("/entrar")
 public class LoginPacienteS extends HttpServlet {
 	private void processarRequisicao(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, ParseException, SQLException {
@@ -33,16 +33,16 @@ public class LoginPacienteS extends HttpServlet {
 		entrou = loginBD.login(p);
 		RequestDispatcher rd = null;
 		
-		if(cpf != null && senha != null) {
+		if(entrou) {
             HttpSession sessao = request.getSession();
             sessao.setAttribute("cpf", cpf);
             sessao.setAttribute("senha", senha);
             
     		request.setAttribute("resultado", entrou);
-    		rd = request.getRequestDispatcher("pagina2.jsp");
+    		rd = request.getRequestDispatcher("home.jsp");
 		} else {
     		request.setAttribute("resultado", entrou);
-    		rd = request.getRequestDispatcher("pagina2.jsp");
+    		rd = request.getRequestDispatcher("index.jsp");
 		}
 
 		try {

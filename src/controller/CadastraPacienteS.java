@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.CadastraPaciente;
 import model.Paciente;
@@ -41,11 +42,25 @@ public class CadastraPacienteS extends HttpServlet {
         p.setEmail(email);
         p.setSenha(senha);
   
+
         cadastrou = cp.novo(p);
         
+        
         RequestDispatcher rd = null;
-        request.setAttribute("resultado", cadastrou);
-        rd = request.getRequestDispatcher("index.jsp");
+        
+        if(cadastrou) {
+            HttpSession sessao = request.getSession();
+            sessao.setAttribute("cpf", cpf);
+            sessao.setAttribute("senha", senha);
+            
+    		request.setAttribute("resultado", cadastrou);
+    		rd = request.getRequestDispatcher("index.jsp");
+		} else {
+    		request.setAttribute("resultado", cadastrou);
+    		rd = request.getRequestDispatcher("cadastra.jsp");
+		}
+        
+   
        
         try {
             rd.forward(request, response);
