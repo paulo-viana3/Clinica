@@ -1,21 +1,38 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@page language="java" contentType="text/html" pageEncoding="UTF-8" import="dao.CadastraPaciente"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="estilo.css" media="screen" />
+<title>Home</title>
+<link rel="stylesheet" type="text/css" href="homeStyle.css" media="screen" />
 </head>
+
 <body>
-
 <%
-String usuario = String.valueOf(request.getAttribute("resultado"));
-
+	String cpf = String.valueOf(request.getSession().getAttribute("cpf"));
+	CadastraPaciente cp = new CadastraPaciente();
+	String nome = cp.buscaPaciente(cpf);
 %>
-<div class="input-group mb-3">
-<input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="<%=usuario%>">
-</div>
+<input type="checkbox" id="bt_menu">
+	<label for="bt_menu">&#9776;</label>
+
+	<nav class="menu">
+		<ul>
+			<li><a href="home.jsp">Home</a>
+			<li><a href="agendamento.jsp">Agendamento Consulta</a>
+			<li><a href="dadosCadastrais.jsp">Dados Cadastrais</a>
+			<li><a href="meusAgendamentos.jsp">Meus Agendamentos</a>
+			<li><a href="index.jsp">Sair</a>
+		</ul>
+	</nav>
+	<div id="fundo-externo">
+    	<div id="fundo">
+				<div class="input-group mb-3">
+					<h1>Bem Vindo, <%=nome%></h1>
+				</div>
+        	<img src="images/medicos.jpg" alt="" />
+    	</div>
+	</div>
+
 
 
 </body>

@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
@@ -45,6 +46,29 @@ public class CadastraPaciente {
 			}
 			return false;
 		}
+	
+	public String buscaPaciente(String cpf) {
+		Connection conn = null;
+		Paciente p = new Paciente();
+		try {
+			String sql = "SELECT NOME FROM TBPACIENTE WHERE CPF=?";
+			conn = Conexao.getConexaoMySQL();
+			PreparedStatement psmt = conn.prepareStatement(sql);
+
+			psmt.setString(1, cpf);
+
+			ResultSet rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				p.setNome(rs.getString("nome"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Conexao.FecharConexao();
+		}
+		return p.getNome();
 	}
+}
 
 

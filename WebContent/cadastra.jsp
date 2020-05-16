@@ -4,7 +4,7 @@
 <html>
 <head>
 
-  <title>Medic | Medical HTML Template</title>
+  <title>Cliníca Médica</title>
 
   
   <!-- mobile responsive meta -->
@@ -14,7 +14,7 @@
   <!--Favicon-->
   <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
   <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-<title>Insert title here</title>
+<title>Cadastro</title>
 <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 <script>
 function validatePassword(){
@@ -52,7 +52,7 @@ if(res.equals("false")){
       <div class="container clearfix">
             <div class="logo">
                   <figure>
-                        <a href="index.html">
+                        <a href="index.jsp">
                               <img src="logo.png" alt="">
                         </a>
                   </figure>

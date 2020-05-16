@@ -5,10 +5,83 @@
 @import url("../plugins/jquery-ui/jquery-ui.css");
 @import url("../plugins/timePicker.css");
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700|Source+Sans+Pro:400,600,700");
-body {
-  line-height: 1.4;
-  font-family: "Source Sans Pro", sans-serif;
-  -webkit-font-smoothing: antialiased;
+*{
+	margin: 0;
+	padding: 0;
+}
+
+.menu{
+	width: 100%;
+	height: 49px;
+	background-color: #48bdc5;
+	font-family: "Roboto", sans-serif;
+}
+
+.menu ul{
+	list-style:none;
+	position: relative;
+	background-color: #48bdc5;
+}
+
+.menu ul li{
+	width: 220px;
+	float: left;
+
+}
+
+.menu a {
+	padding: 15px;
+	display: block;
+	text-decoration: none;
+	text-align: center;
+	background-color: #48bdc5;
+	color: #fff;
+}
+
+.menu a:hover{
+	background-color: #a6f0f5;
+	color: #48bdc5;
+	font-weight: bold;
+}
+
+label[for="bt_menu"]{
+	padding: 5px;
+	background-color: #48bdc5;
+	color: #fff;
+	font-family: "Roboto", sans-serif;
+	text-align: center;
+	font-size: 30px;
+	cursor: pointer;
+	width: 50px;
+	height: 50px;
+}
+#bt_menu{
+	display: none;
+}
+
+label[for="bt_menu"]{
+	display: none;
+}
+
+@media(max-width: 800px){
+	.menu{
+		margin-top: 5px;
+		margin-left: -100%;
+		transition: all .4s;
+	}
+	
+	label[for="bt_menu"]{
+		display: block;
+	}
+	
+	#bt_menu:checked ~ .menu{
+		margin-left: 0;
+	}
+	
+	.menu ul li{
+		width: 100%;
+		float: none;
+	}
 }
 
 p {
@@ -21,30 +94,9 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Roboto", sans-serif;
   font-weight: 600;
 }
-a {
-  text-decoration: none;
-  cursor: pointer;
-}
-
-a:hover, a:focus, a:visited {
-  text-decoration: none;
-  outline: none;
-}
 
 
 /*=== MEDIA QUERY ===*/
-body {
-  font-size: 15px;
-  color: #777777;
-  line-height: 1.8em;
-  font-weight: 400;
-  background: #ffffff;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center top;
-  -webkit-font-smoothing: antialiased;
-  font-family: "Roboto", sans-serif;
-}
 
 .page-wrapper {
   overflow: hidden;
@@ -67,20 +119,12 @@ p {
 .section-title h3 {
   font-size: 40px;
   line-height: 50px;
-  color: #222222;
+  color: #48bdc5;
   font-weight: 700;
   font-family: "Source Sans Pro", sans-serif;
 }
 
 .section-title h4 {
-  font-size: 20px;
-  line-height: 25px;
-  color: #222222;
-  font-weight: 700;
-  font-family: "Source Sans Pro", sans-serif;
-}
-
-.section-title a{
   font-size: 20px;
   line-height: 25px;
   color: #222222;
@@ -3282,4 +3326,4 @@ li {
   }
 }
 
-/*# sourceMappingURL=maps/style.css.map */
+
