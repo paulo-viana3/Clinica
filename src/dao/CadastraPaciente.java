@@ -69,6 +69,34 @@ public class CadastraPaciente {
 		}
 		return p.getNome();
 	}
+	
+	public Paciente buscaPacienteCompleto(String cpf) {
+		Connection conn = null;
+		Paciente p = new Paciente();
+		try {
+			String sql = "SELECT * FROM TBPACIENTE WHERE CPF=?";
+			conn = Conexao.getConexaoMySQL();
+			PreparedStatement psmt = conn.prepareStatement(sql);
+
+			psmt.setString(1, cpf);
+
+			ResultSet rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				p.setNome(rs.getString("nome"));
+				p.setCpf(rs.getString("cpf"));
+				p.setTelContato(rs.getString("telContato"));
+				p.setEmail(rs.getString("email"));
+				p.setDataNasc(rs.getDate("dataNasc"));
+				p.setSenha(rs.getString("senha"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Conexao.FecharConexao();
+		}
+		return p;
+	}
 }
 
 

@@ -337,17 +337,18 @@ li {
 .header-uper {
   padding: 40px 0px;
   margin-top: 0px;
+  height: 30px;
   background: #48bdc5;
 }
 
 .header-uper .logo {
   float: left;
-  margin-top: -50px;
+  margin-top: -20px;
 }
 
 .header-uper .right-side {
   float: right;
-  margin-top: -40px;
+  margin-top: -30px;
 }
 
 @media (max-width: 991px) {

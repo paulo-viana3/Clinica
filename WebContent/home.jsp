@@ -2,16 +2,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%
+	String cpf = String.valueOf(request.getSession().getAttribute("cpf"));
+	String nome = "";
+	if(cpf.equals("null")){
+		response.sendRedirect("index.jsp");
+	}else{
+		CadastraPaciente cp = new CadastraPaciente();
+		nome = cp.buscaPaciente(cpf);
+	}
+%>
 <title>Home</title>
 <link rel="stylesheet" type="text/css" href="homeStyle.css" media="screen" />
 </head>
 
 <body>
-<%
-	String cpf = String.valueOf(request.getSession().getAttribute("cpf"));
-	CadastraPaciente cp = new CadastraPaciente();
-	String nome = cp.buscaPaciente(cpf);
-%>
+
 <input type="checkbox" id="bt_menu">
 	<label for="bt_menu">&#9776;</label>
 
@@ -21,7 +27,7 @@
 			<li><a href="agendamento.jsp">Agendamento Consulta</a>
 			<li><a href="dadosCadastrais.jsp">Dados Cadastrais</a>
 			<li><a href="meusAgendamentos.jsp">Meus Agendamentos</a>
-			<li><a href="index.jsp">Sair</a>
+			<li><a href="sair">Sair</a>
 		</ul>
 	</nav>
 	<div id="fundo-externo">
