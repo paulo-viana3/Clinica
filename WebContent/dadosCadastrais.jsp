@@ -31,8 +31,23 @@ if(password.value != confirm_password.value) {
 password.onchange = validatePassword;
 confirm_password.onkeyup = validatePassword;
 
+function mascaraData(i){
+	   
+	   var v = i.value;
+	   
+	   if(isNaN(v[v.length-1])){ // impede entrar outro caractere que não seja número
+	      i.value = v.substring(0, v.length-1);
+	      return;
+	   }
+	   
+	   i.setAttribute("maxlength", "10");
+	   if (v.length == 2 || v.length == 5) i.value += "/";
+
+}
+
 
 </script>
+
 <title>Dados Cadastrais</title>
 
 </head>
@@ -104,36 +119,35 @@ res = null;
         <div class="row">
 
                 <div class="form-group mb-2">
-                    <input type="text" name="nome" value="<%=p.getNome()%>">
+                    <input type="text" name="nome" value="<%=p.getNome()%>" placeholder="Nome">
                 </div>
                 
                 <div class="form-group mb-2">
-                    <input type="text" name="cpf" value="<%=p.getCpf()%>" readonly=“true”>
+                    <input type="text" name="cpf" value="<%=p.getCpf()%>" readonly=“true” placeholder="Cpf">
                 </div>
                
                 <div class="form-group mb-2">
-                    <input type="text" name="data" value="<%=data%>" >
+                    <input oninput="mascaraData(this)" type="text" name="data" value="<%=data%>" placeholder="Data de Nascimento">
                 </div>
                 
                 <div class="form-group mb-2">
-                    <input type="text" name="telefone" value="<%=p.getTelContato()%>" >
+                    <input type="text" name="telefone" value="<%=p.getTelContato()%>" placeholder="Telefone Celular">
                 </div>
                 
                 <div class="form-group mb-2">
-                    <input type="text" name="email" value="<%=p.getEmail()%>" >
+                    <input type="text" name="email" value="<%=p.getEmail()%>" placeholder="E-mail">
                 </div>
                
                 <div class="form-group ">
-                    <input type="password" name="password" value="<%=p.getSenha()%>" id="password" >
+                    <input type="password" name="password" value="<%=p.getSenha()%>" id="password"  placeholder="Senha" >
                 </div>
                 
                 <div class="form-group">
-                    <input type="password" name="confirm_password" value="<%=p.getSenha()%>" id="confirm_password" >
+                    <input type="password" name="confirm_password" value="<%=p.getSenha()%>" id="confirm_password"  placeholder="Confirmar Senha" >
                 </div>
                 <br>
                 
            
-          
             <div class="col-md-12 col-sm-12 col-xs-12">
           
               

@@ -31,8 +31,38 @@ password.onchange = validatePassword;
 confirm_password.onkeyup = validatePassword;
 </script>
 
-</head>
+<script>
+function mascaraCpf(i){
+	   
+	   var v = i.value;
+	   
+	   if(isNaN(v[v.length-1])){ // impede entrar outro caractere que não seja número
+	      i.value = v.substring(0, v.length-1);
+	      return;
+	   }
+	   
+	   i.setAttribute("maxlength", "14");
+	   if (v.length == 3 || v.length == 7) i.value += ".";
+	   if (v.length == 11) i.value += "-";
 
+}
+
+function mascaraData(i){
+	   
+	   var v = i.value;
+	   
+	   if(isNaN(v[v.length-1])){ // impede entrar outro caractere que não seja número
+	      i.value = v.substring(0, v.length-1);
+	      return;
+	   }
+	   
+	   i.setAttribute("maxlength", "10");
+	   if (v.length == 2 || v.length == 5) i.value += "/";
+
+}
+</script>
+
+</head>
 <body>
 <%
 String res = null;
@@ -42,7 +72,7 @@ res = String.valueOf(request.getAttribute("resultado"));
 if(res.equals("false")){
 
 	out.print("<script>"); 
-	out.print("alert('Dados inválidos');"); 
+	out.print("alert('CPF já cadastrado/Inválido');"); 
 	out.print("</script>");
 
 }
@@ -93,11 +123,11 @@ if(res.equals("false")){
                 </div>
                 
                 <div class="form-group mb-2">
-                    <input type="text" name="cpf" placeholder="CPF" required="">
+                    <input oninput="mascaraCpf(this)" type="text" name="cpf" placeholder="CPF" required="" >
                 </div>
                
                 <div class="form-group mb-2">
-                    <input type="text" name="data" placeholder="Data de Nascimento" required="">
+                    <input oninput="mascaraData(this)" type="text" name="data" placeholder="Data de Nascimento" required="">
                 </div>
                 
                 <div class="form-group mb-2">

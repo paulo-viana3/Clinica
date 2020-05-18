@@ -43,10 +43,15 @@ public class CadastraPacienteS extends HttpServlet {
         p.setEmail(email);
         p.setSenha(senha);
   
+        String verificaCpf= cp.buscaPaciente(cpf);
+        boolean cpfValido = valida_CPF(cpf.replace(".","").replace("-",""));
+        
+        if(verificaCpf != null ||  cpfValido == false) {
+        	cadastrou = false;
+        }else {
+        	cadastrou = cp.novo(p);
+        }
 
-        cadastrou = cp.novo(p);
-        
-        
         RequestDispatcher rd = null;
         
         if(cadastrou) {
@@ -88,6 +93,35 @@ public class CadastraPacienteS extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public static boolean valida_CPF(String cpf) {
+	    int i = 0;
+	    int[] arrayCPF = new int[11];
+	    int cpf1 = 0, cpf2 = 0;
+	    for (i = 0; i < 11; i++) { //For que auxilia na transferencia de valores do CPF para Array
+	        arrayCPF[i] = Integer.parseInt(cpf.charAt(i) + "");
+	        if (i < 9) {
+	            cpf1 += arrayCPF[i] * (10 - i);
+	        }
+	        if (i < 10) {
+	            cpf2 += arrayCPF[i] * (11 - i);
+	        }
+	    }
+	    cpf1 = (cpf1 * 10) % 11;
+
+	    cpf2 = (cpf2 * 10) % 11;
+	    if (cpf1 > 9) {
+	        cpf1 = 0;
+	    }
+	    if (cpf2 > 9) {
+	        cpf2 = 1;
+	    }
+	    if (cpf1 == arrayCPF[9] && cpf2 == arrayCPF[10]) {
+	        return true;
+	    } else {
+	        return false;
+	    }
 	}
 	
 	
