@@ -30,16 +30,12 @@
 			<li><a href="sair">Sair</a>
 		</ul>
 	</nav>
-	<div id="fundo-externo">
     	<div id="fundo">
-				<div class="input-group mb-3">
+    		<div class="input">
+				<div class="input-group">
 					<h1>Bem Vindo, <%=nome%></h1>
 				</div>
-        	<img src="images/medicos.jpg" alt="" />
+			</div>
     	</div>
-	</div>
-
-
-
 </body>
 </html>

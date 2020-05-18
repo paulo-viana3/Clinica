@@ -36,6 +36,27 @@ confirm_password.onkeyup = validatePassword;
 <title>Dados Cadastrais</title>
 
 </head>
+<%
+String res = null;
+
+res = String.valueOf(request.getAttribute("resultado"));
+
+if(res.equals("false")){
+
+	out.print("<script>"); 
+	out.print("alert('Falha ao atualizar');"); 
+	out.print("</script>");
+
+}else if(res.equals("true")){
+	out.print("<script>"); 
+	out.print("alert('Dados atualizados com sucesso');"); 
+	out.print("</script>");
+
+}else{
+	
+}
+res = null;
+%>
 <body>
 <%
 
@@ -79,35 +100,35 @@ confirm_password.onkeyup = validatePassword;
         <h3>Dados Cadastrais</h3>
  </div>
  <br>
-<form name="contact_form" class="default-form contact-form" action="cadastra" method="POST">
+<form name="contact_form" class="default-form contact-form" action="atualiza" method="POST">
         <div class="row">
 
                 <div class="form-group mb-2">
-                    <input type="text" name="nome" placeholder="<%=p.getNome()%>">
+                    <input type="text" name="nome" value="<%=p.getNome()%>">
                 </div>
                 
                 <div class="form-group mb-2">
-                    <input type="text" name="cpf" placeholder="<%=p.getCpf()%>" readonly=“true”>
+                    <input type="text" name="cpf" value="<%=p.getCpf()%>" readonly=“true”>
                 </div>
                
                 <div class="form-group mb-2">
-                    <input type="text" name="data" placeholder="<%=data%>" >
+                    <input type="text" name="data" value="<%=data%>" >
                 </div>
                 
                 <div class="form-group mb-2">
-                    <input type="text" name="telefone" placeholder="<%=p.getTelContato()%>" >
+                    <input type="text" name="telefone" value="<%=p.getTelContato()%>" >
                 </div>
                 
                 <div class="form-group mb-2">
-                    <input type="text" name="email" placeholder="<%=p.getEmail()%>" >
+                    <input type="text" name="email" value="<%=p.getEmail()%>" >
                 </div>
                
                 <div class="form-group ">
-                    <input type="password" name="password" placeholder="Senha" id="password" >
+                    <input type="password" name="password" value="<%=p.getSenha()%>" id="password" >
                 </div>
                 
                 <div class="form-group">
-                    <input type="password" name="confirm_password" placeholder="Confirmar Senha" id="confirm_password" >
+                    <input type="password" name="confirm_password" value="<%=p.getSenha()%>" id="confirm_password" >
                 </div>
                 <br>
                 
@@ -116,9 +137,9 @@ confirm_password.onkeyup = validatePassword;
             <div class="col-md-12 col-sm-12 col-xs-12">
           
               
-               <button type="submit" class="btn-style-one" onclick="validatePassword()">Cadastrar</button>
+               <button type="submit" class="btn-style-one" onclick="validatePassword()">Salvar</button>
               
-               <button type="reset" class="btn-style-one" onclick="limpar()">Limpar</button>
+               <button type="reset" class="btn-style-two" onclick="limpar()">Limpar</button>
               
             </div>
         </div>
