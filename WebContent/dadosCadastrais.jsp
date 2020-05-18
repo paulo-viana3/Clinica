@@ -116,7 +116,7 @@ confirm_password.onkeyup = validatePassword;
             <div class="col-md-12 col-sm-12 col-xs-12">
           
               
-               <button type="submit" class="btn-style-one" onclick="validatePassword()">Cadastrar</button>
+               <button type="submit" class="btn-style-one" onclick="validatePassword()">Salvar</button>
               
                <button type="reset" class="btn-style-one" onclick="limpar()">Limpar</button>
               
