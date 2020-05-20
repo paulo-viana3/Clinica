@@ -1,8 +1,30 @@
-<%@page language="java" contentType="text/html" pageEncoding="UTF-8" 
-import="dao.CadastraPaciente , model.Paciente , java.text.*"%>
+<%@page language="java"  contentType="text/html" pageEncoding="UTF-8" 
+import="dao.CadastraPaciente , model.Paciente , dao.BuscaEspecialidade, java.util.*, java.text.*" %>
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+function atualizaEsp(){
+	
+
+            // Selecionamos o menu dropdown, que possui os valores possíveis:
+            var menu_dropdown = document.getElementById("especialidade");
+            var medico = document.getElementById("profissional");
+            // Requisitamos que a função handler (que copia o valor selecionado para a caixa de texto) [...]
+            // [...] seja executada cada vez que o valor do menu dropdown mude:
+            menu_dropdown.addEventListener("change", function(){
+
+                // Como este código é executado após cada alteração, sempre obtemos o valor atualizado:
+                var valor_selecionado = menu_dropdown.options[menu_dropdown.selectedIndex].value;
+                
+                
+                
+            });
+           
+}    
+
+
+</script>
 <link rel="stylesheet" type="text/css" href="estiloDados.css" media="screen" />
 <title>Agendamento Consulta</title>
 </head>
@@ -27,18 +49,36 @@ import="dao.CadastraPaciente , model.Paciente , java.text.*"%>
 <section class="form">
 <center>
  <div class="section-title">
-        <h3>Dados Cadastrais</h3>
+        <h3>Agendamento</h3>
  </div>
  <br>
 <form name="contact_form" class="default-form contact-form" action="agenda" method="POST">
         <div class="row">
+				<div class="form-group mb-2">
+                	<select name="especialidade" id="especialidade" class="form-group" onchange="atualizaEsp()">   
+                		<option value="0"> </option>
+				 <%
+                	  
+                	  	ArrayList<String> esp = new ArrayList<String>();
+						BuscaEspecialidade be = new BuscaEspecialidade();
+						esp = be.buscaEspecialidade();
+						
+						String espAtual = "";
+						for(int i=0;i<esp.size();i++){
+							
+							espAtual = esp.get(i);		
+               	 %>
+        
+                
+					  <option value="<%=i+1%>"> <%=espAtual%> </option>
 
-                <div class="form-group mb-2">
-                    <input type="text" name="especialidade" placeholder="Especialidade">
+                	<% } %>
+                	</select>
                 </div>
+                <input type="hidden" name="idesp" id="idesp">
                 
                 <div class="form-group mb-2">
-                    <input type="text" name="profissional" placeholder="Profissional" readonly=“true”>
+                	<select name="profissional" id="profissional" class="form-group">   
                 </div>
                
                 <div class="form-group mb-2">

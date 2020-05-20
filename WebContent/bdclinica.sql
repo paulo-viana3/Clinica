@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 11-Maio-2020 às 03:41
+-- Tempo de geração: 20-Maio-2020 às 04:03
 -- Versão do servidor: 10.4.10-MariaDB
 -- versão do PHP: 7.1.33
 
@@ -66,15 +66,48 @@ CREATE TABLE `tbconsulta` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `tbespecialidade`
+--
+
+CREATE TABLE `tbespecialidade` (
+  `idEspecialidade` int(11) NOT NULL,
+  `nomeEspecialidade` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `tbespecialidade`
+--
+
+INSERT INTO `tbespecialidade` (`idEspecialidade`, `nomeEspecialidade`) VALUES
+(1, 'Dermatologista'),
+(2, 'Clínica Geral'),
+(3, 'Nutricionista'),
+(4, 'Urologista'),
+(5, 'Oftalmologista');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `tbmedico`
 --
 
 CREATE TABLE `tbmedico` (
   `idMedico` int(11) NOT NULL,
-  `idPessoa` int(11) NOT NULL,
+  `nomeMedico` varchar(200) NOT NULL,
   `crm` int(11) NOT NULL,
-  `especialidade` varchar(300) NOT NULL
+  `idEspecialidade` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `tbmedico`
+--
+
+INSERT INTO `tbmedico` (`idMedico`, `nomeMedico`, `crm`, `idEspecialidade`) VALUES
+(1, 'Drª Sarah Carvalho', 15626, 1),
+(2, 'Drª Matheus Zelli', 13695, 2),
+(3, 'Drª Paulo Viana', 84656, 3),
+(4, 'Drª Sabrina Sato', 65426, 4),
+(5, 'Drª Marcos Abreu', 84123, 5);
 
 -- --------------------------------------------------------
 
@@ -97,7 +130,8 @@ CREATE TABLE `tbpaciente` (
 --
 
 INSERT INTO `tbpaciente` (`idPaciente`, `telContato`, `nome`, `cpf`, `dataNasc`, `senha`, `email`) VALUES
-(1, '11930129704', 'Paulo Henrique Alves Viana', '488.647.198-65', '2000-10-18', '12345', 'paulohenrique.viana@hotmail.com');
+(1, '11930129704', 'Paulo Henrique Alves Viana', '488.647.198-65', '2000-10-18', '12345', 'paulohenrique.viana@hotmail.com'),
+(14, '11930129704', 'Matheus', '179.565.828-22', '2000-02-18', '111', 'paulohenrique.viana@hotmail.com');
 
 --
 -- Índices para tabelas despejadas
@@ -124,11 +158,17 @@ ALTER TABLE `tbconsulta`
   ADD KEY `idAgendamento` (`idAgendamento`);
 
 --
+-- Índices para tabela `tbespecialidade`
+--
+ALTER TABLE `tbespecialidade`
+  ADD PRIMARY KEY (`idEspecialidade`);
+
+--
 -- Índices para tabela `tbmedico`
 --
 ALTER TABLE `tbmedico`
   ADD PRIMARY KEY (`idMedico`),
-  ADD KEY `idPessoa` (`idPessoa`);
+  ADD KEY `idPessoa` (`nomeMedico`);
 
 --
 -- Índices para tabela `tbpaciente`
@@ -159,16 +199,22 @@ ALTER TABLE `tbconsulta`
   MODIFY `idConsulta` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de tabela `tbespecialidade`
+--
+ALTER TABLE `tbespecialidade`
+  MODIFY `idEspecialidade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT de tabela `tbmedico`
 --
 ALTER TABLE `tbmedico`
-  MODIFY `idMedico` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idMedico` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `tbpaciente`
 --
 ALTER TABLE `tbpaciente`
-  MODIFY `idPaciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idPaciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
