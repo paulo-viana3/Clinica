@@ -79,7 +79,6 @@ function pegarData(param, nome1,nome2,nome3){
 						for(int i=0;i<esp.size();i++){
 							
 							espAtual = esp.get(i);	
-
 							String id = request.getParameter("id");
 							
 							 if(Integer.parseInt(id) == i+1){
@@ -99,7 +98,6 @@ function pegarData(param, nome1,nome2,nome3){
 						%>
                 	</select>
                 </div>
-                <input type="hidden" name="idesp" id="idesp">
                 
                 <div class="form-group mb-2">
                 	<select name="profissional" id="profissional" class="form-group" >   
@@ -113,7 +111,7 @@ function pegarData(param, nome1,nome2,nome3){
 						
 						if(medico != null){
 							med = bm.buscaMedico(Integer.parseInt(request.getParameter("id")));
-							System.out.println("aaaaaaaaaaaaaaaaaaa"+med.size());
+							//System.out.println("aaaaaaaaaaaaaaaaaaa"+med.size());
 							String medAtual = "";
 							int codigo;
 							int i;
@@ -133,8 +131,15 @@ function pegarData(param, nome1,nome2,nome3){
                 	
                 	</select>
                 </div>
-                <div class="form-group">
-                     <input type="date" name="data" id="data" onchange="pegarData('agendamento.jsp','id','data','medico')">
+                <div class="form-group mb-2">
+                	<%
+                		String data1 = request.getParameter("data");
+                		if (data1 == null) {
+                	%>
+                    <input type="date" name="data" id="data" onchange="pegarData('agendamento.jsp','id','data','medico')">
+                    <%	} else { %>
+                    <input type="date" name="data" id="data" value=<%=data1%>>
+                    <% } %>
                 </div>
                
                 <div class="form-group mb-2">
