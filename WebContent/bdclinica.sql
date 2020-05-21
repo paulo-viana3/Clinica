@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 20-Maio-2020 às 04:03
+-- Tempo de geração: 21-Maio-2020 às 03:38
 -- Versão do servidor: 10.4.10-MariaDB
 -- versão do PHP: 7.1.33
 
@@ -33,9 +33,17 @@ CREATE TABLE `tbagendamento` (
   `data` date NOT NULL,
   `medico` int(11) NOT NULL,
   `paciente` int(11) NOT NULL,
-  `atendente` int(11) NOT NULL,
-  `status` char(1) NOT NULL
+  `status` char(1) NOT NULL,
+  `horario` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `tbagendamento`
+--
+
+INSERT INTO `tbagendamento` (`idAgendamento`, `data`, `medico`, `paciente`, `status`, `horario`) VALUES
+(1, '2020-05-20', 3, 1, 'A', '11:00'),
+(2, '2020-05-21', 2, 1, 'A', '12:00');
 
 -- --------------------------------------------------------
 
@@ -84,6 +92,40 @@ INSERT INTO `tbespecialidade` (`idEspecialidade`, `nomeEspecialidade`) VALUES
 (3, 'Nutricionista'),
 (4, 'Urologista'),
 (5, 'Oftalmologista');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tbhorario`
+--
+
+CREATE TABLE `tbhorario` (
+  `idHorario` int(11) NOT NULL,
+  `horario` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `tbhorario`
+--
+
+INSERT INTO `tbhorario` (`idHorario`, `horario`) VALUES
+(1, '10:00'),
+(2, '10:30'),
+(3, '11:00'),
+(4, '11:30'),
+(5, '12:00'),
+(6, '12:30'),
+(7, '13:00'),
+(8, '13:30'),
+(9, '14:00'),
+(10, '14:30'),
+(11, '15:00'),
+(12, '15:30'),
+(13, '16:00'),
+(14, '16:30'),
+(15, '17:00'),
+(16, '17:30'),
+(17, '18:00');
 
 -- --------------------------------------------------------
 
@@ -164,6 +206,12 @@ ALTER TABLE `tbespecialidade`
   ADD PRIMARY KEY (`idEspecialidade`);
 
 --
+-- Índices para tabela `tbhorario`
+--
+ALTER TABLE `tbhorario`
+  ADD PRIMARY KEY (`idHorario`);
+
+--
 -- Índices para tabela `tbmedico`
 --
 ALTER TABLE `tbmedico`
@@ -184,7 +232,7 @@ ALTER TABLE `tbpaciente`
 -- AUTO_INCREMENT de tabela `tbagendamento`
 --
 ALTER TABLE `tbagendamento`
-  MODIFY `idAgendamento` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idAgendamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `tbatendente`
@@ -203,6 +251,12 @@ ALTER TABLE `tbconsulta`
 --
 ALTER TABLE `tbespecialidade`
   MODIFY `idEspecialidade` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de tabela `tbhorario`
+--
+ALTER TABLE `tbhorario`
+  MODIFY `idHorario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de tabela `tbmedico`

@@ -1,31 +1,44 @@
-<%@page language="java"  contentType="text/html" pageEncoding="UTF-8" 
-import="dao.CadastraPaciente , model.Paciente , dao.BuscaEspecialidade, java.util.*, java.text.*" %>
+<%@page language="java"  contentType="text/html ; charset=UTF-8" 
+pageEncoding="UTF-8" 
+import="dao.CadastraPaciente , model.Paciente , model.Medico, dao.BuscaHorario, dao.BuscaEspecialidade, dao.BuscaMedico, java.util.*, java.text.*" %>
 <!DOCTYPE html>
 <html>
 <head>
+
 <script>
-function atualizaEsp(){
+
+function selectData(param, nomeDoCampo){
+	
+	 var e = document.getElementById("especialidade");//get the combobox
+	 var selGate = e.options[e.selectedIndex].value;
+
+	 
+	 location.href=param+"?"+nomeDoCampo+"="+selGate;
+	
+}
+
+function pegarData(param, nome1,nome2,nome3){
+	
 	
 
-            // Selecionamos o menu dropdown, que possui os valores possíveis:
-            var menu_dropdown = document.getElementById("especialidade");
-            var medico = document.getElementById("profissional");
-            // Requisitamos que a função handler (que copia o valor selecionado para a caixa de texto) [...]
-            // [...] seja executada cada vez que o valor do menu dropdown mude:
-            menu_dropdown.addEventListener("change", function(){
-
-                // Como este código é executado após cada alteração, sempre obtemos o valor atualizado:
-                var valor_selecionado = menu_dropdown.options[menu_dropdown.selectedIndex].value;
-                
-                
-                
-            });
-           
-}    
-
+	 var d = document.getElementById("data");//get the combobox
+	 var selGate = d.value;
+	 
+	 var e = document.getElementById("profissional");//get the combobox
+	 var selecionado = e.options[e.selectedIndex].value;
+	 
+	 var esp = document.getElementById("especialidade");//get the combobox
+	 var selec = esp.options[esp.selectedIndex].value;
+	 
+	 location.href=param+"?"+nome1+"="+selec+"&"+nome2+"="+selGate+"&"+nome3+"="+selecionado;
+	 
+	 
+}
 
 </script>
+
 <link rel="stylesheet" type="text/css" href="estiloDados.css" media="screen" />
+
 <title>Agendamento Consulta</title>
 </head>
 <body>
@@ -36,7 +49,7 @@ function atualizaEsp(){
 	<nav class="menu">
 		<ul>
 			<li><a href="home.jsp">Home</a>
-			<li><a href="agendamento.jsp">Agendamento Consulta</a>
+			<li><a href="agendamento.jsp?id=0">Agendamento Consulta</a>
 			<li><a href="dadosCadastrais.jsp">Dados Cadastrais</a>
 			<li><a href="meusAgendamentos.jsp">Meus Agendamentos</a>
 			<li><a href="sair">Sair</a>
@@ -52,41 +65,105 @@ function atualizaEsp(){
         <h3>Agendamento</h3>
  </div>
  <br>
-<form name="contact_form" class="default-form contact-form" action="agenda" method="POST">
+<form name="formagenda" class="default-form contact-form" action="index.jsp" method="POST">
         <div class="row">
 				<div class="form-group mb-2">
-                	<select name="especialidade" id="especialidade" class="form-group" onchange="atualizaEsp()">   
-                		<option value="0"> </option>
+                	<select name="especialidade" id="especialidade" class="form-group" onchange="selectData('agendamento.jsp','id')">   
+                		<option value="" disabled selected>Especialidade</option>
 				 <%
                 	  
                 	  	ArrayList<String> esp = new ArrayList<String>();
 						BuscaEspecialidade be = new BuscaEspecialidade();
 						esp = be.buscaEspecialidade();
-						
 						String espAtual = "";
 						for(int i=0;i<esp.size();i++){
 							
-							espAtual = esp.get(i);		
-               	 %>
-        
-                
-					  <option value="<%=i+1%>"> <%=espAtual%> </option>
+							espAtual = esp.get(i);	
 
-                	<% } %>
+							String id = request.getParameter("id");
+							
+							 if(Integer.parseInt(id) == i+1){
+               				 %>
+					  			<option value="<%=i+1%>" selected = "selected"> <%=espAtual%> </option>
+					  		<%}else {
+							 %>
+					 			<option value="<%=i+1%>"> <%=espAtual%> </option>
+					 		 
+					  		<% } %>
+					  		  
+								
+							<% 
+								
+							}
+						
+						%>
                 	</select>
                 </div>
                 <input type="hidden" name="idesp" id="idesp">
                 
                 <div class="form-group mb-2">
-                	<select name="profissional" id="profissional" class="form-group">   
+                	<select name="profissional" id="profissional" class="form-group" >   
+                		<option value="" disabled selected>Médico</option>
+				  <%
+                	  
+                	  	ArrayList<Medico> med = new ArrayList<Medico>();
+						BuscaMedico bm = new BuscaMedico();
+						
+						String medico = request.getParameter("id");
+						
+						if(medico != null){
+							med = bm.buscaMedico(Integer.parseInt(request.getParameter("id")));
+							System.out.println("aaaaaaaaaaaaaaaaaaa"+med.size());
+							String medAtual = "";
+							int codigo;
+							int i;
+							for(i=0;i<med.size();i++){
+								
+								medAtual = med.get(i).getNome();	
+								codigo = med.get(i).getId();
+							
+							  if(Integer.parseInt(medico) == med.get(i).getId()){
+               	 		%>
+               	 				<option value="<%=codigo%>" selected="selected"> <%=medAtual%> </option>
+
+                	<%	} else { %>
+                				<option value="<%=codigo%>"> <%=medAtual%> </option>
+                	
+                	<% }}} %>
+                	
+                	</select>
+                </div>
+                <div class="form-group">
+                     <input type="date" name="data" id="data" onchange="pegarData('agendamento.jsp','id','data','medico')">
                 </div>
                
                 <div class="form-group mb-2">
-                    <input type="text" name="Data" placeholder="Data Consulta" readonly=“true”>
-                </div> 
-                
-                <div class="form-group mb-2">
-                    <input type="text" name="horario" placeholder="Horário" >
+                    <select name="horario" id="horario" class="form-group" >   
+                		<option value="" disabled selected>Horário</option>
+				  <%
+                	  
+                	  	ArrayList<String> hor = new ArrayList<String>();
+				  		BuscaHorario bh = new BuscaHorario();
+						
+						String data = request.getParameter("data");
+						String medic = request.getParameter("medico");
+						
+						
+						if(data != null && medico != null){
+							hor = bh.buscaHorario(Integer.parseInt(medic), data);
+							
+							String horAtual = "";
+							int i;
+							for(i=0;i<hor.size();i++){
+								
+								horAtual = hor.get(i);	
+						
+						
+               	 		%>
+               	 		<option value="<%=i+1%>"> <%=horAtual%> </option>
+
+                	<% }} %>
+                	</select>
                 </div>
                 
           	<br> 

@@ -99,7 +99,7 @@ res = null;
 	<nav class="menu">
 		<ul>
 			<li><a href="home.jsp">Home</a>
-			<li><a href="agendamento.jsp">Agendamento Consulta</a>
+			<li><a href="agendamento.jsp?id=0">Agendamento Consulta</a>
 			<li><a href="dadosCadastrais.jsp">Dados Cadastrais</a>
 			<li><a href="meusAgendamentos.jsp">Meus Agendamentos</a>
 			<li><a href="sair">Sair</a>
