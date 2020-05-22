@@ -1,22 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.9.0.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Tempo de geração: 22-Maio-2020 às 03:38
--- Versão do servidor: 10.3.15-MariaDB
--- versão do PHP: 7.3.6
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Banco de dados: `bdclinica`
@@ -37,7 +18,7 @@ CREATE TABLE `tbagendamento` (
   `horario` varchar(10) NOT NULL,
   `diagnostico` varchar(300) DEFAULT NULL,
   `prescricao` varchar(300) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
 --
 -- Extraindo dados da tabela `tbagendamento`
@@ -61,7 +42,7 @@ INSERT INTO `tbagendamento` (`idAgendamento`, `data`, `medico`, `paciente`, `sta
 CREATE TABLE `tbatendente` (
   `idAtendente` int(11) NOT NULL,
   `idPessoa` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
 -- --------------------------------------------------------
 
@@ -76,7 +57,7 @@ CREATE TABLE `tbconsulta` (
   `prescricao` text NOT NULL,
   `diasAtestado` int(11) NOT NULL,
   `status` char(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
 -- --------------------------------------------------------
 
@@ -87,7 +68,7 @@ CREATE TABLE `tbconsulta` (
 CREATE TABLE `tbespecialidade` (
   `idEspecialidade` int(11) NOT NULL,
   `nomeEspecialidade` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
 --
 -- Extraindo dados da tabela `tbespecialidade`
@@ -95,7 +76,7 @@ CREATE TABLE `tbespecialidade` (
 
 INSERT INTO `tbespecialidade` (`idEspecialidade`, `nomeEspecialidade`) VALUES
 (1, 'Dermatologista'),
-(2, 'ClÃ­nica Geral'),
+(2, 'Clínica Geral'),
 (3, 'Nutricionista'),
 (4, 'Urologista'),
 (5, 'Oftalmologista');
@@ -109,7 +90,7 @@ INSERT INTO `tbespecialidade` (`idEspecialidade`, `nomeEspecialidade`) VALUES
 CREATE TABLE `tbhorario` (
   `idHorario` int(11) NOT NULL,
   `horario` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
 --
 -- Extraindo dados da tabela `tbhorario`
@@ -145,18 +126,18 @@ CREATE TABLE `tbmedico` (
   `nomeMedico` varchar(200) NOT NULL,
   `crm` int(11) NOT NULL,
   `idEspecialidade` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
 --
 -- Extraindo dados da tabela `tbmedico`
 --
 
 INSERT INTO `tbmedico` (`idMedico`, `nomeMedico`, `crm`, `idEspecialidade`) VALUES
-(1, 'DrÂª Sarah Carvalho', 15626, 1),
-(2, 'DrÂª Matheus Zelli', 13695, 2),
-(3, 'DrÂª Paulo Viana', 84656, 3),
-(4, 'DrÂª Sabrina Sato', 65426, 4),
-(5, 'DrÂª Marcos Abreu', 84123, 5);
+(1, 'Drª Sarah Carvalho', 15626, 1),
+(2, 'Drº Matheus Zelli', 13695, 2),
+(3, 'Drº Paulo Viana', 84656, 3),
+(4, 'Drª Sabrina Sato', 65426, 4),
+(5, 'Drº Marcos Abreu', 84123, 5);
 
 -- --------------------------------------------------------
 
@@ -172,7 +153,7 @@ CREATE TABLE `tbpaciente` (
   `dataNasc` date NOT NULL,
   `senha` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+);
 
 --
 -- Extraindo dados da tabela `tbpaciente`
@@ -279,6 +260,3 @@ ALTER TABLE `tbpaciente`
   MODIFY `idPaciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
