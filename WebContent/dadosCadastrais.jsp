@@ -153,9 +153,7 @@ res = null;
           
               
                <button type="submit" class="btn-style-one" onclick="validatePassword()">Salvar</button>
-              
-               <button type="reset" class="btn-style-two" onclick="limpar()">Limpar</button>
-              
+                            
             </div>
         </div>
     </form>
