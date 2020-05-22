@@ -11,10 +11,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <!--Favicon-->
-  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 <title>Cadastro</title>
+<link rel="icon" href="images/icone.jpg" type="image/icon">
 <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 <script>
 function validatePassword(){

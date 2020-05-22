@@ -43,7 +43,7 @@ public class CadastraPacienteS extends HttpServlet {
         p.setEmail(email);
         p.setSenha(senha);
   
-        String verificaCpf= cp.buscaPaciente(cpf);
+        String verificaCpf= cp.buscaPaciente(cpf).getNome();
         boolean cpfValido = valida_CPF(cpf.replace(".","").replace("-",""));
         
         if(verificaCpf != null ||  cpfValido == false) {

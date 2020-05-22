@@ -11,10 +11,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <!--Favicon-->
-  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 <title>Login</title>
+<link rel="icon" href="images/icone.jpg" type="image/icon">
 <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 
 <script>
@@ -104,11 +102,11 @@ res = null;
         <div class="row">
 
                 <div class="form-group">
-                    <input oninput="mascara(this)" type="text" name="cpf" placeholder="CPF" required="">
+                    <input oninput="mascara(this)" autofocus type="text" name="cpf" placeholder="CPF" required="" tabindex=1>
                 </div>
                 <br>
                 <div class="form-group">
-                    <input type="password" name="senha" placeholder="Senha" required="">
+                    <input type="password" name="senha" placeholder="Senha" required="" tabindex=2>
                 </div>
           		<br>
           		 <div class="section-title">
@@ -117,7 +115,7 @@ res = null;
           		<br>
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="form-group text-center">
-                    <button type="submit" class="btn-style-one">Entrar</button>
+                    <button type="submit" class="btn-style-one" tabindex=3>Entrar</button>
                 </div>
             </div>
         </div>

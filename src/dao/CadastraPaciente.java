@@ -48,11 +48,11 @@ public class CadastraPaciente {
 			return false;
 		}
 	
-	public String buscaPaciente(String cpf) {
+	public Paciente buscaPaciente(String cpf) {
 		Connection conn = null;
 		Paciente p = new Paciente();
 		try {
-			String sql = "SELECT NOME FROM TBPACIENTE WHERE CPF=?";
+			String sql = "SELECT IDPACIENTE, NOME FROM TBPACIENTE WHERE CPF=?";
 			conn = Conexao.getConexaoMySQL();
 			PreparedStatement psmt = conn.prepareStatement(sql);
 
@@ -61,6 +61,7 @@ public class CadastraPaciente {
 			ResultSet rs = psmt.executeQuery();
 
 			while (rs.next()) {
+				p.setIdPaciente(rs.getInt("idpaciente"));
 				p.setNome(rs.getString("nome"));
 			}
 		} catch (SQLException e) {
@@ -68,7 +69,7 @@ public class CadastraPaciente {
 		} finally {
 			Conexao.FecharConexao();
 		}
-		return p.getNome();
+		return p;
 	}
 	
 	public Paciente buscaPacienteCompleto(String cpf) {

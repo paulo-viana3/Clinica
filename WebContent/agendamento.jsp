@@ -1,6 +1,6 @@
 <%@page language="java"  contentType="text/html ; charset=UTF-8" 
 pageEncoding="UTF-8" 
-import="dao.CadastraPaciente , model.Paciente , model.Medico, dao.BuscaHorario, dao.BuscaEspecialidade, dao.BuscaMedico, java.util.*, java.text.*" %>
+import="dao.CadastraPaciente , model.Paciente , model.Medico, dao.BuscaHorario, dao.BuscaEspecialidade, dao.BuscaMedico, model.Horario, java.util.*, java.text.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,8 +19,6 @@ function selectData(param, nomeDoCampo){
 
 function pegarData(param, nome1,nome2,nome3){
 	
-	
-
 	 var d = document.getElementById("data");//get the combobox
 	 var selGate = d.value;
 	 
@@ -38,11 +36,31 @@ function pegarData(param, nome1,nome2,nome3){
 </script>
 
 <link rel="stylesheet" type="text/css" href="estiloDados.css" media="screen" />
-
+<link rel="icon" href="images/icone.jpg" type="image/jpg">
 <title>Agendamento Consulta</title>
 </head>
 <body>
+<%
+String res = null;
 
+res = String.valueOf(request.getAttribute("resultado"));
+
+if(res.equals("false")){
+
+	out.print("<script>"); 
+	out.print("alert('Agendamento Indisponível');"); 
+	out.print("</script>");
+
+}else if(res.equals("true")){
+	out.print("<script>"); 
+	out.print("alert('Agendado com sucesso');"); 
+	out.print("</script>");
+
+}else{
+	
+}
+res = null;
+%>
 <input type="checkbox" id="bt_menu">
 	<label for="bt_menu">&#9776;</label>
 
@@ -65,7 +83,7 @@ function pegarData(param, nome1,nome2,nome3){
         <h3>Agendamento</h3>
  </div>
  <br>
-<form name="formagenda" class="default-form contact-form" action="index.jsp" method="POST">
+<form name="formagenda" class="default-form contact-form" action="agendar" method="POST">
         <div class="row">
 				<div class="form-group mb-2">
                 	<select name="especialidade" id="especialidade" class="form-group" onchange="selectData('agendamento.jsp','id')">   
@@ -111,7 +129,6 @@ function pegarData(param, nome1,nome2,nome3){
 						
 						if(medico != null){
 							med = bm.buscaMedico(Integer.parseInt(request.getParameter("id")));
-							//System.out.println("aaaaaaaaaaaaaaaaaaa"+med.size());
 							String medAtual = "";
 							int codigo;
 							int i;
@@ -147,23 +164,23 @@ function pegarData(param, nome1,nome2,nome3){
                 		<option value="" disabled selected>Horário</option>
 				  <%
                 	  
-                	  	ArrayList<String> hor = new ArrayList<String>();
+                	  	ArrayList<Horario> hor = new ArrayList<Horario>();
 				  		BuscaHorario bh = new BuscaHorario();
-						
+				  		
 						String data = request.getParameter("data");
 						String medic = request.getParameter("medico");
 						
-						
-						if(data != null && medico != null){
+						if(data != null && medic != null){
 							hor = bh.buscaHorario(Integer.parseInt(medic), data);
-							
+							System.out.println("aaaaa"+hor.size());
 							String horAtual = "";
+							int cod = 0;
 							int i;
 							for(i=0;i<hor.size();i++){
-								
-								horAtual = hor.get(i);	
-						
-						
+								//cod = hor.get(i).getIdHorario();
+								horAtual = hor.get(i).getHorario();
+								System.out.println("aaaaa"+hor.get(i).getHorario());
+								System.out.println(i);
                	 		%>
                	 		<option value="<%=i+1%>"> <%=horAtual%> </option>
 
@@ -177,9 +194,6 @@ function pegarData(param, nome1,nome2,nome3){
           
               
                <button type="submit" class="btn-style-one" onclick="">Agendar</button>
-              
-               <button type="reset" class="btn-style-one" onclick="">Limpar</button>
-              
             </div>
         </div>
     </form>

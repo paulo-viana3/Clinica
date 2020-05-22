@@ -9,10 +9,11 @@
 		response.sendRedirect("index.jsp");
 	}else{
 		CadastraPaciente cp = new CadastraPaciente();
-		nome = cp.buscaPaciente(cpf);
+		nome = cp.buscaPaciente(cpf).getNome();
 	}
 %>
 <title>Home</title>
+<link rel="icon" href="images/icone.jpg" type="image/icon">
 <link rel="stylesheet" type="text/css" href="homeStyle.css" media="screen" />
 </head>
 

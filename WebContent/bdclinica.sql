@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21-Maio-2020 às 03:38
--- Versão do servidor: 10.4.10-MariaDB
--- versão do PHP: 7.1.33
+-- Tempo de geração: 22-Maio-2020 às 03:38
+-- Versão do servidor: 10.3.15-MariaDB
+-- versão do PHP: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -34,16 +34,23 @@ CREATE TABLE `tbagendamento` (
   `medico` int(11) NOT NULL,
   `paciente` int(11) NOT NULL,
   `status` char(1) NOT NULL,
-  `horario` varchar(10) NOT NULL
+  `horario` varchar(10) NOT NULL,
+  `diagnostico` varchar(300) DEFAULT NULL,
+  `prescricao` varchar(300) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Extraindo dados da tabela `tbagendamento`
 --
 
-INSERT INTO `tbagendamento` (`idAgendamento`, `data`, `medico`, `paciente`, `status`, `horario`) VALUES
-(1, '2020-05-20', 3, 1, 'A', '11:00'),
-(2, '2020-05-21', 2, 1, 'A', '12:00');
+INSERT INTO `tbagendamento` (`idAgendamento`, `data`, `medico`, `paciente`, `status`, `horario`, `diagnostico`, `prescricao`) VALUES
+(1, '2020-05-20', 3, 1, 'A', '11:00', NULL, NULL),
+(2, '2020-05-21', 2, 1, 'A', '12:00', NULL, NULL),
+(3, '2020-05-22', 0, 15, 'A', '1', '', ''),
+(4, '2020-05-22', 0, 15, 'A', '1', '', ''),
+(5, '2020-05-23', 1, 15, 'A', '14:30', '', ''),
+(6, '2020-05-23', 1, 15, 'A', '10:00', '', ''),
+(7, '2020-05-24', 1, 15, 'A', '18:00', '', '');
 
 -- --------------------------------------------------------
 
@@ -88,7 +95,7 @@ CREATE TABLE `tbespecialidade` (
 
 INSERT INTO `tbespecialidade` (`idEspecialidade`, `nomeEspecialidade`) VALUES
 (1, 'Dermatologista'),
-(2, 'Clínica Geral'),
+(2, 'ClÃ­nica Geral'),
 (3, 'Nutricionista'),
 (4, 'Urologista'),
 (5, 'Oftalmologista');
@@ -145,11 +152,11 @@ CREATE TABLE `tbmedico` (
 --
 
 INSERT INTO `tbmedico` (`idMedico`, `nomeMedico`, `crm`, `idEspecialidade`) VALUES
-(1, 'Drª Sarah Carvalho', 15626, 1),
-(2, 'Drª Matheus Zelli', 13695, 2),
-(3, 'Drª Paulo Viana', 84656, 3),
-(4, 'Drª Sabrina Sato', 65426, 4),
-(5, 'Drª Marcos Abreu', 84123, 5);
+(1, 'DrÂª Sarah Carvalho', 15626, 1),
+(2, 'DrÂª Matheus Zelli', 13695, 2),
+(3, 'DrÂª Paulo Viana', 84656, 3),
+(4, 'DrÂª Sabrina Sato', 65426, 4),
+(5, 'DrÂª Marcos Abreu', 84123, 5);
 
 -- --------------------------------------------------------
 
@@ -173,7 +180,8 @@ CREATE TABLE `tbpaciente` (
 
 INSERT INTO `tbpaciente` (`idPaciente`, `telContato`, `nome`, `cpf`, `dataNasc`, `senha`, `email`) VALUES
 (1, '11930129704', 'Paulo Henrique Alves Viana', '488.647.198-65', '2000-10-18', '12345', 'paulohenrique.viana@hotmail.com'),
-(14, '11930129704', 'Matheus', '179.565.828-22', '2000-02-18', '111', 'paulohenrique.viana@hotmail.com');
+(14, '11930129704', 'Matheus', '179.565.828-22', '2000-02-18', '111', 'paulohenrique.viana@hotmail.com'),
+(15, '11966003501', 'Sarah Cardoso', '483.562.918-36', '2000-10-17', '171000', 'sarahccardoso@hotmail.com');
 
 --
 -- Índices para tabelas despejadas
@@ -232,7 +240,7 @@ ALTER TABLE `tbpaciente`
 -- AUTO_INCREMENT de tabela `tbagendamento`
 --
 ALTER TABLE `tbagendamento`
-  MODIFY `idAgendamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idAgendamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `tbatendente`
@@ -268,7 +276,7 @@ ALTER TABLE `tbmedico`
 -- AUTO_INCREMENT de tabela `tbpaciente`
 --
 ALTER TABLE `tbpaciente`
-  MODIFY `idPaciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idPaciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
