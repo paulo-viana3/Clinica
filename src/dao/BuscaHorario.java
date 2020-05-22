@@ -16,7 +16,7 @@ public class BuscaHorario {
 	ArrayList<Horario> horario = new ArrayList<Horario>();
 	
 	public ArrayList<Horario> buscaHorario(int medico, String dia) throws ParseException {
-		Horario h = new Horario();
+		
 		Connection conn = null;
 		
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -33,11 +33,14 @@ public class BuscaHorario {
 			ResultSet rs = psmt.executeQuery();
 
 			while (rs.next()) {
+				Horario h = new Horario();
+				
 				h.setIdHorario(rs.getInt("idHorario"));
 				h.setHorario(rs.getString("horario"));
 				horario.add(h);
-				System.out.println(h.getHorario());
+				
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

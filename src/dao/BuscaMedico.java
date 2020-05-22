@@ -14,7 +14,7 @@ public class BuscaMedico {
 
 	public ArrayList<Medico> buscaMedico(int codigo) {
 		Connection conn = null;
-		Medico m = new Medico();
+		
 		try {
 			String sql = "SELECT idMedico,nomeMedico FROM tbmedico where idEspecialidade = ?";
 			conn = Conexao.getConexaoMySQL();
@@ -24,6 +24,7 @@ public class BuscaMedico {
 			ResultSet rs = psmt.executeQuery();
 
 			while (rs.next()) {
+				Medico m = new Medico();
 				
 				m.setId(rs.getInt("idMedico"));
 				m.setNome(rs.getString("nomeMedico"));

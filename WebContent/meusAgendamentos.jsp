@@ -1,6 +1,6 @@
 <%@page language="java"  contentType="text/html ; charset=UTF-8" 
 pageEncoding="UTF-8"
-import ="dao.BuscaAgendamento"
+import="dao.BuscaAgendamento"
 %>
 <!DOCTYPE html>
 <html>
@@ -58,9 +58,9 @@ tr:nth-child(even) {
 
 		String cpf = String.valueOf(request.getSession().getAttribute("cpf"));
 		String [][] agenda = new String[10][5];
-		BuscaAgendamento ba = new BuscaAgendamento();
+		BuscaAgendamento bt = new BuscaAgendamento();
 		
-		agenda = ba.buscaAgendamento(cpf);
+		agenda = bt.buscaAgendamento(cpf);
 				
 		for(int i=0;i<10;i++) {
 			if(agenda[i][0] == null) {

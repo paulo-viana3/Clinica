@@ -1,6 +1,6 @@
 <%@page language="java"  contentType="text/html ; charset=UTF-8" 
 pageEncoding="UTF-8" 
-import="dao.CadastraPaciente , model.Paciente , model.Medico, dao.BuscaHorario, dao.BuscaEspecialidade, dao.BuscaMedico, model.Horario, java.util.*, java.text.*" %>
+import="dao.CadastraPaciente , dao.BuscaAgendamento, model.Paciente , model.Medico, dao.BuscaHorario, dao.BuscaEspecialidade, dao.BuscaMedico, model.Horario, java.util.*, java.text.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -172,17 +172,17 @@ res = null;
 						
 						if(data != null && medic != null){
 							hor = bh.buscaHorario(Integer.parseInt(medic), data);
-							System.out.println("aaaaa"+hor.size());
+							System.out.println("primeiro: "+hor.get(0).getHorario());
 							String horAtual = "";
 							int cod = 0;
 							int i;
 							for(i=0;i<hor.size();i++){
-								//cod = hor.get(i).getIdHorario();
+								cod = hor.get(i).getIdHorario();
 								horAtual = hor.get(i).getHorario();
-								System.out.println("aaaaa"+hor.get(i).getHorario());
+								
 								System.out.println(i);
                	 		%>
-               	 		<option value="<%=i+1%>"> <%=horAtual%> </option>
+               	 		<option value="<%=cod%>"> <%=horAtual%> </option>
 
                 	<% }} %>
                 	</select>
