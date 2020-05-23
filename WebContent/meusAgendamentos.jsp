@@ -29,6 +29,27 @@ tr:nth-child(even) {
 <title>Meus Agendamentos</title>
 </head>
 <body>
+<%
+String res = null;
+
+res = String.valueOf(request.getAttribute("resultado"));
+
+if(res.equals("false")){
+
+	out.print("<script>"); 
+	out.print("alert('Cancelamento Indisponível');"); 
+	out.print("</script>");
+
+}else if(res.equals("true")){
+	out.print("<script>"); 
+	out.print("alert('Cancelado com sucesso');"); 
+	out.print("</script>");
+
+}else{
+	
+}
+res = null;
+%>
 
 <input type="checkbox" id="bt_menu">
 	<label for="bt_menu">&#9776;</label>
@@ -52,16 +73,16 @@ tr:nth-child(even) {
 	</div>
 	<br>
 	
-	<table border=1><tr><th>Data Consulta</th><th>Horário</th><th>Nome Médico</th><th>Nome Especialidade</th><th>Status</th></tr>
+	<table border=1><tr><th>Num. Agendamento</th><th>Data Consulta</th><th>Horário</th><th>Nome Médico</th><th>Nome Especialidade</th><th>Status</th><th>Cancelar</th></tr>
 	
 	<%
 
 		String cpf = String.valueOf(request.getSession().getAttribute("cpf"));
-		String [][] agenda = new String[10][5];
+		String [][] agenda = new String[10][7];
 		BuscaAgendamento bt = new BuscaAgendamento();
 		
 		agenda = bt.buscaAgendamento(cpf);
-				
+		String status = "Cancelado";		
 		for(int i=0;i<10;i++) {
 			if(agenda[i][0] == null) {
 				agenda[i][0] = "";
@@ -69,19 +90,37 @@ tr:nth-child(even) {
 				agenda[i][2] = "";
 				agenda[i][3] = "";
 				agenda[i][4] = "";
+				agenda[i][5] = "";
 			}
 	%>
-			<tr><td><%=agenda[i][0]%></td>
-			    <td><%=agenda[i][1]%></td>
-			    <td><%=agenda[i][2]%></td>
-			    <td><%=agenda[i][3]%></td>
-			    <td><%=agenda[i][4]%></td></tr>
+			    
+        <form action="cancelar" method="POST">
+            <input type="hidden" name="tarefa" value="CancelarAgendamento">
+            <input type="hidden" name="id" value="<%=agenda[i][0]%>">
+	            <tr>
+	            	<td><%=agenda[i][0]%></td>
+				    <td><%=agenda[i][1]%></td>
+				    <td><%=agenda[i][2]%></td>
+				    <td><%=agenda[i][3]%></td>
+				    <td><%=agenda[i][4]%></td>
+				    <td><%=agenda[i][5]%></td>  
+			    
 	<%
-		}
+		if(agenda[i][0] == "" || status.equals(agenda[i][5])){
+	%>
+				<td></td>
+	<%
+		} else {
+	%>
+                <td><input type="submit" name="cancelar" value=<%=agenda[i][0] %>></td>
+            
+	<%
+		}}
 
 	%>
+				</tr>
+        </form>
 	</table>
-	
 </center>
 </section>
 

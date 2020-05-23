@@ -172,7 +172,7 @@ res = null;
 						
 						if(data != null && medic != null){
 							hor = bh.buscaHorario(Integer.parseInt(medic), data);
-							System.out.println("primeiro: "+hor.get(0).getHorario());
+							//System.out.println("primeiro: "+hor.get(0).getHorario());
 							String horAtual = "";
 							int cod = 0;
 							int i;
