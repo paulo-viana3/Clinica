@@ -106,7 +106,7 @@ res = null;
 				    <td><%=agenda[i][5]%></td>  
 			    
 	<%
-		if(agenda[i][0] == "" || status.equals(agenda[i][5])){
+		if(agenda[i][0] == "" || status.equals(agenda[i][5])){ //tratativa para não aparecer o botão para as linhas vazias OU quanto status cancelado
 	%>
 				<td></td>
 	<%

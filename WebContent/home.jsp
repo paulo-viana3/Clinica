@@ -33,7 +33,7 @@
     	<div id="fundo">
     		<div class="input">
 				<div class="input-group">
-					<h1>Bem Vindo, <%=nome%></h1>
+					<h1>Bem Vindx, <%=nome%></h1>
 				</div>
 			</div>
     	</div>
