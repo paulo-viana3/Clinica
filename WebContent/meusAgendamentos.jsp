@@ -5,37 +5,16 @@ import="dao.BuscaAgendamento , java.util.* , controller.CancelarConsultaS,model.
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 90%;
-}
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
-</style>
-
-
+<link rel="icon" href="images/icone.png" type="image/icon">
 <link rel="stylesheet" type="text/css" href="estiloDados.css" media="screen" />
-
 <title>Meus Agendamentos</title>
 <script>
-
 function selectId(id){
 	
 	document.getElementById('idagenda').value = id;
 
 }
 </script>
-
 </head>
 <body>
 <%
@@ -81,10 +60,19 @@ res = null;
 	       <h3>Meus Agendamentos</h3>
 	</div>
 	<br>
+	<br>
 	<form action="cancelar" method="POST">
 	<input type="hidden" name="idagenda" id="idagenda" value="">
 	
-	<table border=1><tr><th>Data Consulta</th><th>Horário</th><th>Nome Médico</th><th>Nome Especialidade</th><th>Status</th><th>Cancelar</th></tr>
+	<table border=1>
+		<tr>
+			<th class="titulo-coluna">Data Consulta</th>
+			<th class="titulo-coluna">Horário</th>
+			<th class="titulo-coluna">Nome Médico</th>
+			<th class="titulo-coluna">Nome Especialidade</th>
+			<th class="titulo-coluna">Status</th>
+			<th class="titulo-coluna">Cancelar</th>
+		</tr>
 	<%
 
 		String cpf = String.valueOf(request.getSession().getAttribute("cpf"));
@@ -110,7 +98,7 @@ res = null;
 				<% if(agenda.get(i).getStatus().equals("Cancelado")){ %>
 					<td></td>
 				<% } else { %>
-					<td><input type="submit" name="cancelar" value="Cancelar Agendamento" onclick="selectId('<%=agenda.get(i).getIdAgendamento()%>')"></td>
+					<td><center><input type="submit" class="button-cancelar" name="cancelar" value="X" onclick="selectId('<%=agenda.get(i).getIdAgendamento()%>')"></center></td>
 				<% } %>
 		</tr>
 		

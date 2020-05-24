@@ -3,7 +3,7 @@ import="dao.CadastraPaciente , model.Paciente , java.text.*"%>
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="icon" href="images/icone.jpg" type="image/icon">
+<link rel="icon" href="images/icone.png" type="image/icon">
 <link rel="stylesheet" type="text/css" href="estiloDados.css" media="screen" />
 <script>
 function limpar() {

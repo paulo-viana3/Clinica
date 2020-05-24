@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
 <title>Cadastro</title>
-<link rel="icon" href="images/icone.jpg" type="image/icon">
+<link rel="icon" href="images/icone.png" type="image/icon">
 <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 <script>
 function validatePassword(){

@@ -4,7 +4,7 @@
 <html>
 <head>
 
-  <title>Medic | Medical HTML Template</title>
+  <title>Clínica Médica</title>
 
   
   <!-- mobile responsive meta -->
@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
 <title>Login</title>
-<link rel="icon" href="images/icone.jpg" type="image/icon">
+<link rel="icon" href="images/icone.png" type="image/icon">
 <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 
 <script>
@@ -62,7 +62,7 @@ res = null;
       <div class="container clearfix">
             <div class="logo">
                   <figure>
-                        <a href="index.html">
+                        <a href="index.jsp">
                               <img src="logo.png" alt="">
                         </a>
                   </figure>

@@ -13,7 +13,7 @@
 	}
 %>
 <title>Home</title>
-<link rel="icon" href="images/icone.jpg" type="image/icon">
+<link rel="icon" href="images/icone.png" type="image/icon">
 <link rel="stylesheet" type="text/css" href="homeStyle.css" media="screen" />
 </head>
 
@@ -33,7 +33,7 @@
     	<div id="fundo">
     		<div class="input">
 				<div class="input-group">
-					<h1>Bem Vindx, <%=nome%></h1>
+					<h1>Bem Vindo, <%=nome%></h1>
 				</div>
 			</div>
     	</div>

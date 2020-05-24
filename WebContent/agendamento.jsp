@@ -36,7 +36,7 @@ function pegarData(param, nome1,nome2,nome3){
 </script>
 
 <link rel="stylesheet" type="text/css" href="estiloDados.css" media="screen" />
-<link rel="icon" href="images/icone.jpg" type="image/jpg">
+<link rel="icon" href="images/icone.png" type="image/icon">
 <title>Agendamento Consulta</title>
 </head>
 <body>
@@ -85,7 +85,7 @@ res = null;
  <br>
 <form name="formagenda" class="default-form contact-form" action="agendar" method="POST">
         <div class="row">
-				<div class="form-group mb-2">
+				<div class="form-group">
                 	<select name="especialidade" id="especialidade" class="form-group" onchange="selectData('agendamento.jsp','id')">   
                 		<option value="" disabled selected>Especialidade</option>
 				 <%
@@ -117,7 +117,7 @@ res = null;
                 	</select>
                 </div>
                 
-                <div class="form-group mb-2">
+                <div class="form-group">
                 	<select name="profissional" id="profissional" class="form-group" >   
                 		<option value="" disabled selected>Médico</option>
 				  <%
@@ -148,7 +148,7 @@ res = null;
                 	
                 	</select>
                 </div>
-                <div class="form-group mb-2">
+                <div class="form-group">
                 	<%
                 		String data1 = request.getParameter("data");
                 		if (data1 == null) {
@@ -159,7 +159,7 @@ res = null;
                     <% } %>
                 </div>
                
-                <div class="form-group mb-2">
+                <div class="form-group">
                     <select name="horario" id="horario" class="form-group" >   
                 		<option value="" disabled selected>Horário</option>
 				  <%
