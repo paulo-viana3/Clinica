@@ -22,6 +22,7 @@ public class BuscaHorario {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		java.sql.Date dataFormat = new java.sql.Date(format.parse(dia).getTime());
 		//System.out.println(medico + "  param    "+dataFormat);
+		Horario h;
 		try {
 			String sql = "select hr.idHorario, hr.horario from tbhorario hr where horario NOT IN (select h.horario from tbhorario h inner join tbAgendamento a on a.horario = h.horario WHERE a.data = ? AND a.medico = ? AND a.status = 'A')";
 			conn = Conexao.getConexaoMySQL();
@@ -33,7 +34,7 @@ public class BuscaHorario {
 			ResultSet rs = psmt.executeQuery();
 
 			while (rs.next()) {
-				Horario h = new Horario();
+				h = new Horario();
 				
 				h.setIdHorario(rs.getInt("idHorario"));
 				h.setHorario(rs.getString("horario"));

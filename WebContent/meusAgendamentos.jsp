@@ -1,6 +1,6 @@
 <%@page language="java"  contentType="text/html ; charset=UTF-8" 
 pageEncoding="UTF-8"
-import="dao.BuscaAgendamento"
+import="dao.BuscaAgendamento , java.util.* , controller.CancelarConsultaS,model.Agendamento"
 %>
 <!DOCTYPE html>
 <html>
@@ -27,6 +27,15 @@ tr:nth-child(even) {
 <link rel="stylesheet" type="text/css" href="estiloDados.css" media="screen" />
 
 <title>Meus Agendamentos</title>
+<script>
+
+function selectId(id){
+	
+	document.getElementById('idagenda').value = id;
+
+}
+</script>
+
 </head>
 <body>
 <%
@@ -72,55 +81,43 @@ res = null;
 	       <h3>Meus Agendamentos</h3>
 	</div>
 	<br>
+	<form action="cancelar" method="POST">
+	<input type="hidden" name="idagenda" id="idagenda" value="">
 	
-	<table border=1><tr><th>Num. Agendamento</th><th>Data Consulta</th><th>Horário</th><th>Nome Médico</th><th>Nome Especialidade</th><th>Status</th><th>Cancelar</th></tr>
-	
+	<table border=1><tr><th>Data Consulta</th><th>Horário</th><th>Nome Médico</th><th>Nome Especialidade</th><th>Status</th><th>Cancelar</th></tr>
 	<%
 
 		String cpf = String.valueOf(request.getSession().getAttribute("cpf"));
-		String [][] agenda = new String[10][7];
+		ArrayList<Agendamento> agenda = new ArrayList<Agendamento>();
+		
+		
 		BuscaAgendamento bt = new BuscaAgendamento();
 		
 		agenda = bt.buscaAgendamento(cpf);
+		
 		String status = "Cancelado";		
-		for(int i=0;i<10;i++) {
-			if(agenda[i][0] == null) {
-				agenda[i][0] = "";
-				agenda[i][1] = "";
-				agenda[i][2] = "";
-				agenda[i][3] = "";
-				agenda[i][4] = "";
-				agenda[i][5] = "";
-			}
+		for(int i=0;i<agenda.size();i++) {
+			
 	%>
-			    
-        <form action="cancelar" method="POST">
-            <input type="hidden" name="tarefa" value="CancelarAgendamento">
-            <input type="hidden" name="id" value="<%=agenda[i][0]%>">
-	            <tr>
-	            	<td><%=agenda[i][0]%></td>
-				    <td><%=agenda[i][1]%></td>
-				    <td><%=agenda[i][2]%></td>
-				    <td><%=agenda[i][3]%></td>
-				    <td><%=agenda[i][4]%></td>
-				    <td><%=agenda[i][5]%></td>  
-			    
-	<%
-		if(agenda[i][0] == "" || status.equals(agenda[i][5])){ //tratativa para não aparecer o botão para as linhas vazias OU quanto status cancelado
-	%>
-				<td></td>
-	<%
-		} else {
-	%>
-                <td><input type="submit" name="cancelar" value=<%=agenda[i][0] %>></td>
-            
-	<%
-		}}
+		 
 
-	%>
-				</tr>
-        </form>
+		<tr>
+	            <td><%=agenda.get(i).getDataformatada()%></td>
+				<td><%=agenda.get(i).getHorario()%></td>
+				<td><%=agenda.get(i).getNomeMedico()%></td>
+				<td><%=agenda.get(i).getEspecialidade()%></td>
+				<td><%=agenda.get(i).getStatus()%></td>
+				<% if(agenda.get(i).getStatus().equals("Cancelado")){ %>
+					<td></td>
+				<% } else { %>
+					<td><input type="submit" name="cancelar" value="Cancelar Agendamento" onclick="selectId('<%=agenda.get(i).getIdAgendamento()%>')"></td>
+				<% } %>
+		</tr>
+		
+	<% } %>
+
 	</table>
+	</form>
 </center>
 </section>
 

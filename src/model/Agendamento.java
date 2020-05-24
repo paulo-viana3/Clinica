@@ -7,12 +7,42 @@ public class Agendamento {
 	int idAgendamento;
 	Date data;
 	int idMedico;
+	String nomeMedico;
 	int idPaciente;
+	String nomePaciente;
 	String status;
 	String horario;
 	String diagnostico;
 	String prescricao;
+	String especialidade;
+	
+	
+	public String getEspecialidade() {
+		return especialidade;
+	}
+	public void setEspecialidade(String especialidade) {
+		this.especialidade = especialidade;
+	}
+	public String getDataformatada() {
+		return dataformatada;
+	}
+	public void setDataformatada(String dataformatada) {
+		this.dataformatada = dataformatada;
+	}
+	String dataformatada;
 
+	public String getNomeMedico() {
+		return nomeMedico;
+	}
+	public void setNomeMedico(String nomeMedico) {
+		this.nomeMedico = nomeMedico;
+	}
+	public String getNomePaciente() {
+		return nomePaciente;
+	}
+	public void setNomePaciente(String nomePaciente) {
+		this.nomePaciente = nomePaciente;
+	}
 	public int getIdAgendamento() {
 		return idAgendamento;
 	}

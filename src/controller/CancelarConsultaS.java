@@ -26,8 +26,8 @@ public class CancelarConsultaS extends HttpServlet {
         
 		CancelarConsulta cc = new CancelarConsulta();
 		boolean cancelou = false;
-		System.out.println(request.getParameter("cancelar"));
-		String idAgendamento = request.getParameter("cancelar");
+		System.out.println("aquii");
+		String idAgendamento = request.getParameter("idagenda");
 		int id = Integer.parseInt(idAgendamento);
 
 		cancelou = cc.cancela(id);
