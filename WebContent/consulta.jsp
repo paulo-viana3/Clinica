@@ -1,24 +1,11 @@
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8" 
-import="dao.CadastraPaciente , model.Paciente , java.text.*"%>
+import="dao.CadastraPaciente , model.Paciente , model.Agendamento, java.text.*"%>
 <!DOCTYPE html>
 <html>
 <head>
 <link rel="icon" href="images/icone.png" type="image/icon">
 <link rel="stylesheet" type="text/css" href="estiloDados.css" media="screen" />
 <script>
-
-function validatePassword(){
-var password = document.getElementById("password")
-, confirm_password = document.getElementById("confirm_password");
-if(password.value != confirm_password.value) {
-  confirm_password.setCustomValidity("Senhas diferentes!");
-} else {
-  confirm_password.setCustomValidity('');
-}
-}
-
-password.onchange = validatePassword;
-confirm_password.onkeyup = validatePassword;
 
 function mascaraData(i){
 	   
@@ -69,6 +56,7 @@ res = null;
 	String data = "";
 	
 	Paciente p = new Paciente();
+	Agendamento a = new Agendamento();
 	CadastraPaciente cp = new CadastraPaciente();
 	
 	if(cpf.equals("null")){
@@ -88,23 +76,27 @@ res = null;
 	<nav class="menu">
 		<ul>
 			<li><a href="home.jsp">Home</a>
-			<li><a href="agendamento.jsp?id=0">Agendamento Consulta</a>
-			<li><a href="dadosCadastrais.jsp">Dados Cadastrais</a>
+			<li><a href="agendamento.jsp?id=0">Consulta</a>
+			<!--<li><a href="dadosCadastrais.jsp">Dados Cadastrais</a>-->
 			<li><a href="meusAgendamentos.jsp">Meus Agendamentos</a>
 			<li><a href="sair">Sair</a>
 		</ul>
 	</nav>
 	<br>
 	<br>
-	<br>
-
-<section class="form">
+<section class="hero">
 <center>
  <div class="section-title">
-        <h3>Dados Cadastrais</h3>
+        <h3>Consulta</h3>
  </div>
+</section>
+<section class="form">
+<center>
  <br>
-<form name="contact_form" class="default-form contact-form" action="atualiza" method="POST">
+  <div class="section-title">
+        <h4>Dados Paciente</h4>
+ </div>
+<form name="contact_form" class="default-form contact-form" action="salvaConsulta" method="POST">
         <div class="row">
 
                 <div class="form-group mb-2">
@@ -119,31 +111,27 @@ res = null;
                     <input oninput="mascaraData(this)" type="text" name="data" value="<%=data%>" placeholder="Data de Nascimento">
                 </div>
                 
+          </div>
+           
+           <div class="row">
+				<div class="section-title">
+				        <h4>Dados Consulta</h4>
+				 </div>
                 <div class="form-group mb-2">
-                    <input type="text" name="telefone" value="<%=p.getTelContato()%>" placeholder="Telefone Celular">
+                	<textarea name="diagnostico" rows="6" cols="64" placeholder="Diagnóstico"></textarea>
                 </div>
                 
                 <div class="form-group mb-2">
-                    <input type="text" name="email" value="<%=p.getEmail()%>" placeholder="E-mail">
+                	<textarea name="prescricao" rows="6" cols="64" placeholder="Prescrição"></textarea>
                 </div>
                
-                <div class="form-group ">
-                    <input type="password" name="password" value="<%=p.getSenha()%>" id="password"  placeholder="Senha" >
-                </div>
-                
-                <div class="form-group">
-                    <input type="password" name="confirm_password" value="<%=p.getSenha()%>" id="confirm_password"  placeholder="Confirmar Senha" >
-                </div>
-                <br>
-                
-           
+            </div>
             <div class="col-md-12 col-sm-12 col-xs-12">
           
               
                <button type="submit" class="btn-style-one" onclick="validatePassword()">Salvar</button>
                             
             </div>
-        </div>
     </form>
    </center>
    </section>

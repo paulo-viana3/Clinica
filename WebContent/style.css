@@ -5,6 +5,11 @@
 @import url("../plugins/jquery-ui/jquery-ui.css");
 @import url("../plugins/timePicker.css");
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,500,700|Source+Sans+Pro:400,600,700");
+
+.hidden{
+	display: none;
+}
+
 body {
   line-height: 1.4;
   font-family: "Source Sans Pro", sans-serif;
@@ -175,6 +180,36 @@ li {
 .btn-style-one:hover {
   color: #48bdc5;
   border: 1px solid #48bdc5;
+  background: #ffffff;
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+}
+
+.perfil{
+  font-size: 14px;
+  font-weight: 600;
+  color: #48bdc5;
+  line-height: 27px;
+  padding: 8px 36px;
+  background: #e3e3e3;
+  border: 1px solid #e3e3e3;
+  display: inline-block;
+  text-transform: uppercase;
+  font-family: "Source Sans Pro", sans-serif;
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  border-radius: 5px;
+}
+
+.perfil:hover {
+  color: #e3e3e3;
+  border: 1px solid #e3e3e3;
   background: #ffffff;
   transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
