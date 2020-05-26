@@ -54,7 +54,7 @@ public class BuscaAgendamento {
 		Agendamento a;
 		
 		try {
-			String sql = "select DATE_FORMAT(a.data,'%d/%m/%Y') as data,a.horario,p.nome from tbagendamento a join tbmedico m on m.idMedico = a.medico join tbpaciente p on p.idPaciente = a.paciente where m.crm = ? and a.status = 'A' order by a.data, a.horario";
+			String sql = "select a.idAgendamento,DATE_FORMAT(a.data,'%d/%m/%Y') as data,a.horario,p.nome from tbagendamento a join tbmedico m on m.idMedico = a.medico join tbpaciente p on p.idPaciente = a.paciente where m.crm = ? and a.status = 'A' order by a.data, a.horario";
 			conn = Conexao.getConexaoMySQL();
 			PreparedStatement psmt = conn.prepareStatement(sql);
 			
@@ -65,6 +65,7 @@ public class BuscaAgendamento {
 				
 				a = new Agendamento();
 				
+				a.setIdAgendamento(rs.getInt("idAgendamento"));
 				a.setDataformatada(rs.getString("data"));
 				a.setHorario(rs.getString("horario"));
 				a.setNomePaciente(rs.getString("nome"));

@@ -47,7 +47,7 @@ public class ConsultaS extends HttpServlet {
         
             HttpSession sessao = request.getSession();
             sessao.setAttribute("cpf", cpf);
-            sessao.setAttribute("senha", senha);
+            //sessao.setAttribute("senha", senha);
             
     		request.setAttribute("resultado", consulta);
     		rd = request.getRequestDispatcher("consulta.jsp");
