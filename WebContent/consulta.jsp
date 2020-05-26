@@ -1,5 +1,5 @@
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8" 
-import="dao.CadastraPaciente , model.Paciente , model.Agendamento, java.text.*"%>
+import="dao.CadastraPaciente , model.Paciente , model.Agendamento, dao.BuscaAgendamento, java.text.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,6 +48,16 @@ if(res.equals("false")){
 }
 res = null;
 %>
+
+<%
+	String idAgenda = String.valueOf(request.getParameter("idagenda"));
+
+	Paciente p = new Paciente();
+	
+	BuscaAgendamento ba = new BuscaAgendamento();
+	
+	p = ba.buscaPaciente(Integer.parseInt(idAgenda));
+%>
 <body>
 
 
@@ -57,8 +67,6 @@ res = null;
 	<nav class="menu">
 		<ul>
 			<li><a href="home.jsp">Home</a>
-			<li><a href="agendamento.jsp?id=0">Consulta</a>
-			<!--<li><a href="dadosCadastrais.jsp">Dados Cadastrais</a>-->
 			<li><a href="meusAgendamentos.jsp">Meus Agendamentos</a>
 			<li><a href="sair">Sair</a>
 		</ul>
@@ -81,15 +89,15 @@ res = null;
         <div class="row">
 
                 <div class="form-group mb-2">
-                    <input type="text" name="nome" value="" readonly=“true” placeholder="Nome">
+                    <input type="text" name="nome" value="<%=p.getNome()%>" readonly=“true” placeholder="Nome">
                 </div>
                 
                 <div class="form-group mb-2">
-                    <input type="text" name="cpf" value="" readonly=“true” placeholder="CPF">
+                    <input type="text" name="cpf" value="<%=p.getCpf()%>" readonly=“true” placeholder="CPF">
                 </div>
                
                 <div class="form-group mb-2">
-                    <input oninput="mascaraData(this)" type="text" readonly=“true” name="data" value="" placeholder="Data de Nascimento">
+                    <input oninput="mascaraData(this)" type="text" readonly=“true” name="data" value="<%=p.getDataFormatada()%>" placeholder="Data de Nascimento">
                 </div>
                 
           </div>

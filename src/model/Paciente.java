@@ -11,6 +11,7 @@ public class Paciente {
 	private String email;
 	private String senha;
 	private String telContato;
+	private String dataFormatada;
 	
 	public String getTelContato() {
 		return telContato;
@@ -55,5 +56,11 @@ public class Paciente {
 		this.senha = senha;
 	}
 	
+	public String getDataFormatada() {
+		return dataFormatada;
+	}
+	public void setDataFormatada(String dataFormatada) {
+		this.dataFormatada = dataFormatada;
+	}
 	
 }

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import model.Agendamento;
+import model.Paciente;
 
 public class AgendarConsulta {
 
@@ -40,5 +41,25 @@ public class AgendarConsulta {
 		return false;
 	}
 
+	public Agendamento finalizaConsulta(Agendamento a) {
+		Connection conn = null;
+		try {
+			String sql = "UPDATE TBAGENDAMENTO SET DIAGNOSTICO = ?, PRESCRICAO = ? WHERE IDAGENDAMENTO=?";
+			conn = Conexao.getConexaoMySQL();
+			
+			PreparedStatement pstm = conn.prepareStatement(sql);
+
+			pstm.setString(1, a.getDiagnostico());
+			pstm.setString(2, a.getPrescricao());
+
+			pstm.execute();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			Conexao.FecharConexao();
+		}
+		return a;
+	}
 	
 }

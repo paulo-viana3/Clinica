@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.Agendamento;
+import model.Paciente;
 
 public class BuscaAgendamento {
 	
@@ -77,6 +78,33 @@ public class BuscaAgendamento {
 			Conexao.FecharConexao();
 		}
 		return agenda;
+	}	
+	
+	public Paciente buscaPaciente(int idAgenda) {
+		Connection conn = null;
+		Paciente p = new Paciente();
+
+		try {
+			String sql = "select p.nome, p.cpf, DATE_FORMAT(p.dataNasc,'%d/%m/%Y') as dataN from tbpaciente p join tbagendamento a on a.paciente = p.idpaciente where a.idagendamento = ?";
+			conn = Conexao.getConexaoMySQL();
+			PreparedStatement psmt = conn.prepareStatement(sql);
+			
+			psmt.setInt(1, idAgenda);
+			ResultSet rs = psmt.executeQuery();
+			
+			while (rs.next()) {
+				
+				p.setNome(rs.getString("nome"));
+				p.setCpf(rs.getString("cpf"));
+				p.setDataFormatada(rs.getString("dataN"));
+				System.out.println(p.getNome());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Conexao.FecharConexao();
+		}
+		return p;
 	}	
 	
 }
