@@ -6,6 +6,18 @@ import="dao.CadastraPaciente , model.Paciente , java.text.*"%>
 <link rel="icon" href="images/icone.png" type="image/icon">
 <link rel="stylesheet" type="text/css" href="estiloDados.css" media="screen" />
 <script>
+function limpar() {
+	if(document.getElementById('contact_form').value!="") {
+		document.getElementById('nome').value="";
+		document.getElementById('cpf').value="";
+		document.getElementById('data').value="";
+		document.getElementById('telefone').value="";
+		document.getElementById('email').value="";
+		document.getElementById('password').value="";
+		document.getElementById('confirm_password').value="";
+	}
+}
+
 
 function validatePassword(){
 var password = document.getElementById("password")
