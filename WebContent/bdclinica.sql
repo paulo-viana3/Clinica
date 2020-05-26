@@ -125,7 +125,8 @@ CREATE TABLE `tbmedico` (
   `idMedico` int(11) NOT NULL,
   `nomeMedico` varchar(200) NOT NULL,
   `crm` int(11) NOT NULL,
-  `idEspecialidade` int(11) NOT NULL
+  `idEspecialidade` int(11) NOT NULL,
+  `senha` varchar(20) NOT NULL
 );
 
 --

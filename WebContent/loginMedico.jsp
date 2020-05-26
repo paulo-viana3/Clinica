@@ -121,23 +121,6 @@ label[for="bt_menu"]{
 </style>
 <link rel="icon" href="images/icone.png" type="image/icon">
 <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
-
-<script>
-function mascara(i){
-	   
-	   var v = i.value;
-	   
-	   if(isNaN(v[v.length-1])){ // impede entrar outro caractere que não seja número
-	      i.value = v.substring(0, v.length-1);
-	      return;
-	   }
-	   
-	   i.setAttribute("maxlength", "14");
-	   if (v.length == 3 || v.length == 7) i.value += ".";
-	   if (v.length == 11) i.value += "-";
-}
-  
-</script>
 <body>
 
 <%
@@ -167,7 +150,7 @@ res = null;
 
 	<nav class="menu">
 		<ul>
-			<li><a href="index.jsp">Perfil</a>
+			<li><a href="login.jsp">Perfil</a>
 				<ul>
 					<li><a href="loginMedico.jsp">Médico</a></li>
 					<li><a href="index.jsp">Paciente</a></li>
@@ -185,19 +168,16 @@ res = null;
  </div>
  <br>
  	
-<form name="contact_form" class="default-form contact-form" action="entrar" method="POST">
+<form name="contact_form" class="default-form contact-form" action="entrarMedico" method="POST">
 		<div id="row">
                 <div class="form-group">
-                    <input oninput="mascara(this)" autofocus type="text" name="cpf" placeholder="CPF" required="" tabindex=1>
+                    <input autofocus type="text" name="crm" placeholder="CRM" required="" tabindex=1>
                 </div>
                 <br>
                 <div class="form-group">
                     <input type="password" name="senha" placeholder="Senha" required="" tabindex=2>
                 </div>
           		<br>
-          		 <div class="section-title">
-          			<a href='cadastra.jsp'>Não possui cadastro? Clique aqui.</a>
-          		</div>
           		<br>
 	            <div class="col-md-12 col-sm-12 col-xs-12">
 	                <div class="form-group text-center">

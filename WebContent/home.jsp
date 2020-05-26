@@ -1,15 +1,20 @@
-<%@page language="java" contentType="text/html" pageEncoding="UTF-8" import="dao.CadastraPaciente"%>
+<%@page language="java" contentType="text/html" pageEncoding="UTF-8" import="dao.CadastraPaciente, dao.LoginMedico"%>
 <!DOCTYPE html>
 <html>
 <head>
 <%
 	String cpf = String.valueOf(request.getSession().getAttribute("cpf"));
+	String crm = String.valueOf(request.getSession().getAttribute("crm"));
 	String nome = "";
-	if(cpf.equals("null")){
-		response.sendRedirect("index.jsp");
-	}else{
+	
+	if(cpf.equals("null") && crm != "null"){
+		LoginMedico loginMedico = new LoginMedico();
+		nome = loginMedico.buscaNome(crm);
+	}else if(crm.equals("null") && cpf != "null"){
 		CadastraPaciente cp = new CadastraPaciente();
 		nome = cp.buscaPaciente(cpf).getNome();
+	} else if (cpf.equals("null") && crm.equals("null")){
+		response.sendRedirect("index.jsp");
 	}
 %>
 <title>Home</title>
@@ -24,8 +29,13 @@
 	<nav class="menu">
 		<ul>
 			<li><a href="home.jsp">Home</a>
+			<%
+				if(cpf != "null"){
+					
+			%>
 			<li><a href="agendamento.jsp?id=0">Agendamento Consulta</a>
 			<li><a href="dadosCadastrais.jsp">Dados Cadastrais</a>
+			<% }%>
 			<li><a href="meusAgendamentos.jsp">Meus Agendamentos</a>
 			<li><a href="sair">Sair</a>
 		</ul>

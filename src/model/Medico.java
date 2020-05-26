@@ -3,8 +3,17 @@ package model;
 public class Medico {
 
 	String crm;
+	String senha;
 	String nome;
 	int id;
+	int idEspecialidade;
+	
+	public String getSenha() {
+		return senha;
+	}
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 	
 	public String getCrm() {
 		return crm;
@@ -30,7 +39,6 @@ public class Medico {
 	public void setIdEspecialidade(int idEspecialidade) {
 		this.idEspecialidade = idEspecialidade;
 	}
-	int idEspecialidade;
 	
 	
 }

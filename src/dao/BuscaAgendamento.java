@@ -47,4 +47,36 @@ public class BuscaAgendamento {
 		return agenda;
 	}	
 	
+	public ArrayList<Agendamento> buscaAgendamentoM(String crm) {
+		
+		Connection conn = null;
+		Agendamento a;
+		
+		try {
+			String sql = "select DATE_FORMAT(a.data,'%d/%m/%Y') as data,a.horario,p.nome from tbagendamento a join tbmedico m on m.idMedico = a.medico join tbpaciente p on p.idPaciente = a.paciente where m.crm = ? and a.status = 'A' order by a.data, a.horario";
+			conn = Conexao.getConexaoMySQL();
+			PreparedStatement psmt = conn.prepareStatement(sql);
+			
+			psmt.setString(1, crm);
+			ResultSet rs = psmt.executeQuery();
+			
+			while (rs.next()) {
+				
+				a = new Agendamento();
+				
+				a.setDataformatada(rs.getString("data"));
+				a.setHorario(rs.getString("horario"));
+				a.setNomePaciente(rs.getString("nome"));
+				
+				agenda.add(a);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Conexao.FecharConexao();
+		}
+		return agenda;
+	}	
+	
 }

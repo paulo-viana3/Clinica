@@ -49,26 +49,7 @@ if(res.equals("false")){
 res = null;
 %>
 <body>
-<%
 
-	String cpf = String.valueOf(request.getSession().getAttribute("cpf"));
-	String nome = "";
-	String data = "";
-	
-	Paciente p = new Paciente();
-	Agendamento a = new Agendamento();
-	CadastraPaciente cp = new CadastraPaciente();
-	
-	if(cpf.equals("null")){
-		response.sendRedirect("index.jsp");
-	}
-	else{
-		p = cp.buscaPacienteCompleto(cpf);
-
-		DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		data = dateFormat.format(p.getDataNasc());
-	}
-%>
 
 <input type="checkbox" id="bt_menu">
 	<label for="bt_menu">&#9776;</label>
@@ -100,15 +81,15 @@ res = null;
         <div class="row">
 
                 <div class="form-group mb-2">
-                    <input type="text" name="nome" value="<%=p.getNome()%>" placeholder="Nome">
+                    <input type="text" name="nome" value="" readonly=“true” placeholder="Nome">
                 </div>
                 
                 <div class="form-group mb-2">
-                    <input type="text" name="cpf" value="<%=p.getCpf()%>" readonly=“true” placeholder="Cpf">
+                    <input type="text" name="cpf" value="" readonly=“true” placeholder="CPF">
                 </div>
                
                 <div class="form-group mb-2">
-                    <input oninput="mascaraData(this)" type="text" name="data" value="<%=data%>" placeholder="Data de Nascimento">
+                    <input oninput="mascaraData(this)" type="text" readonly=“true” name="data" value="" placeholder="Data de Nascimento">
                 </div>
                 
           </div>
