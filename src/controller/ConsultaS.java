@@ -10,56 +10,39 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import dao.BuscaAgendamento;
+import dao.AgendarConsulta;
 import model.Agendamento;
 import model.Paciente;
 
-@WebServlet("/salvaConsulta")
+@WebServlet("/finalizaConsulta")
 public class ConsultaS extends HttpServlet {
 
 	private void processarRequisicao(HttpServletRequest request, HttpServletResponse response) throws ServletException, ParseException {
         
-		Paciente p = new Paciente();
 		Agendamento a = new Agendamento();
-		BuscaAgendamento ba = new BuscaAgendamento();
+		AgendarConsulta ac = new AgendarConsulta();
 		boolean consulta = false;
 		
-        String nome = request.getParameter("nome");
-        String cpf = request.getParameter("cpf");
-        String data = request.getParameter("data");
         String diagnostico = request.getParameter("diagnostico");
         String prescricao = request.getParameter("prescricao");
-		
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-		java.sql.Date dataFormat = new java.sql.Date(format.parse(data).getTime());
-		
-        p.setNome(nome);
-        p.setCpf(cpf);
-        p.setDataNasc(dataFormat);
+        String idAgenda = String.valueOf(request.getParameter("idagenda"));
+        
         a.setDiagnostico(diagnostico);
         a.setPrescricao(prescricao);
+        a.setIdAgendamento(Integer.parseInt(idAgenda));
         
-        consulta = true;
-
-        RequestDispatcher rd = null;
+        consulta = ac.finalizaConsulta(a) != null;
         
-            HttpSession sessao = request.getSession();
-            sessao.setAttribute("cpf", cpf);
-            //sessao.setAttribute("senha", senha);
-            
-    		request.setAttribute("resultado", consulta);
-    		rd = request.getRequestDispatcher("consulta.jsp");
-       
+    	request.setAttribute("resultado", consulta);
+    	RequestDispatcher rd = request.getRequestDispatcher("meusAgendamentos.jsp");
+    		
         try {
             rd.forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         }
- 
-        
-    }
+	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    try {

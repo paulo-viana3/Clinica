@@ -98,7 +98,6 @@ public class BuscaAgendamento {
 				p.setNome(rs.getString("nome"));
 				p.setCpf(rs.getString("cpf"));
 				p.setDataFormatada(rs.getString("dataN"));
-				System.out.println(p.getNome());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

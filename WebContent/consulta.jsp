@@ -24,7 +24,7 @@ function mascaraData(i){
 
 </script>
 
-<title>Dados Cadastrais</title>
+<title>Consulta</title>
 
 </head>
 <%
@@ -35,12 +35,12 @@ res = String.valueOf(request.getAttribute("resultado"));
 if(res.equals("false")){
 
 	out.print("<script>"); 
-	out.print("alert('Falha ao atualizar');"); 
+	out.print("alert('Falha ao finalizar consulta');"); 
 	out.print("</script>");
 
 }else if(res.equals("true")){
 	out.print("<script>"); 
-	out.print("alert('Dados atualizados com sucesso');"); 
+	out.print("alert('Consulta finalizada com sucesso');"); 
 	out.print("</script>");
 
 }else{
@@ -53,7 +53,7 @@ res = null;
 	String idAgenda = String.valueOf(request.getParameter("idagenda"));
 
 	Paciente p = new Paciente();
-	
+
 	BuscaAgendamento ba = new BuscaAgendamento();
 	
 	p = ba.buscaPaciente(Integer.parseInt(idAgenda));
@@ -82,12 +82,13 @@ res = null;
 <section class="form">
 <center>
  <br>
-  <div class="section-title">
-        <h4>Dados Paciente</h4>
- </div>
-<form name="contact_form" class="default-form contact-form" action="salvaConsulta" method="POST">
-        <div class="row">
 
+<form name="contact_form" class="default-form contact-form" action="finalizaConsulta" method="POST">
+        <div class="row">
+        	<input type="hidden" name="idagenda" id="idagenda" value="<%=idAgenda%>">
+			<div class="section-title">
+        		<h4>Dados Paciente</h4>
+ 			</div>
                 <div class="form-group mb-2">
                     <input type="text" name="nome" value="<%=p.getNome()%>" readonly=“true” placeholder="Nome">
                 </div>
@@ -118,7 +119,7 @@ res = null;
             <div class="col-md-12 col-sm-12 col-xs-12">
           
               
-               <button type="submit" class="btn-style-one" onclick="validatePassword()">Salvar</button>
+               <button type="submit" class="btn-style-one">Finalizar</button>
                             
             </div>
     </form>

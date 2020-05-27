@@ -44,14 +44,15 @@ public class AgendarConsulta {
 	public Agendamento finalizaConsulta(Agendamento a) {
 		Connection conn = null;
 		try {
-			String sql = "UPDATE TBAGENDAMENTO SET DIAGNOSTICO = ?, PRESCRICAO = ? WHERE IDAGENDAMENTO=?";
+			String sql = "UPDATE TBAGENDAMENTO SET DIAGNOSTICO = ?, PRESCRICAO = ?, STATUS = 'F' WHERE IDAGENDAMENTO = ?";
 			conn = Conexao.getConexaoMySQL();
 			
 			PreparedStatement pstm = conn.prepareStatement(sql);
-
+			
 			pstm.setString(1, a.getDiagnostico());
 			pstm.setString(2, a.getPrescricao());
-
+			pstm.setInt(3,  a.getIdAgendamento());
+			System.out.println(a.getDiagnostico() + a.getPrescricao() + a.getIdAgendamento());
 			pstm.execute();
 
 		} catch (SQLException e) {

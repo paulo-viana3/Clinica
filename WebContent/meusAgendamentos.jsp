@@ -8,6 +8,40 @@ import="dao.BuscaAgendamento , java.util.* , controller.CancelarConsultaS,model.
 <link rel="icon" href="images/icone.png" type="image/icon">
 <link rel="stylesheet" type="text/css" href="estiloDados.css" media="screen" />
 <title>Meus Agendamentos</title>
+<style>
+.button-finalizar{
+  font-weight: bold;
+  font-size: 15px;
+  color: #ffffff;
+  line-height: 27px;
+  padding: 6px 20px;
+  position: relative;
+  background: #48bdc5;
+  border: 1px solid #48bdc5;
+  display: inline-block;
+  text-transform: uppercase;
+  font-family: "Roboto", sans-serif;
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  border-radius: 5px;
+}
+
+.button-finalizar:hover{
+  font-weight: bold;
+  color: #48bdc5;
+  border: 1px solid #48bdc5;
+  background: #ffffff;
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  border-radius: 5px;
+}
+</style>
 <script>
 function selectId(id){
 	
@@ -39,12 +73,12 @@ res = String.valueOf(request.getAttribute("resultado"));
 if(res.equals("false")){
 
 	out.print("<script>"); 
-	out.print("alert('Cancelamento Indisponível');"); 
+	out.print("alert('Falha ao finalizar consulta');"); 
 	out.print("</script>");
 
 }else if(res.equals("true")){
 	out.print("<script>"); 
-	out.print("alert('Cancelado com sucesso');"); 
+	out.print("alert('Consulta finalizada com sucesso');"); 
 	out.print("</script>");
 
 }else{
@@ -126,7 +160,7 @@ res = null;
 				<td><%=agenda.get(i).getNomeMedico()%></td>
 				<td><%=agenda.get(i).getEspecialidade()%></td>
 				<td><%=agenda.get(i).getStatus()%></td>
-				<% if(agenda.get(i).getStatus().equals("Cancelado")){ %>
+				<% if(agenda.get(i).getStatus().equals("Cancelado") || agenda.get(i).getStatus().equals("Finalizado")){ %>
 					<td></td>
 				<% } else { %>
 					<td><center><input type="submit" class="button-cancelar" name="cancelar" value="X" onclick="selectId('<%=agenda.get(i).getIdAgendamento()%>')"></center></td>
@@ -143,7 +177,7 @@ res = null;
 		            <td><%=agenda.get(i).getDataformatada()%></td>
 					<td><%=agenda.get(i).getHorario()%></td>
 					<td><%=agenda.get(i).getNomePaciente()%></td>
-					<td><center><input type="submit" class="button-cancelar" name="cancelar" value="Aprovar" onclick="selectId('<%=agenda.get(i).getIdAgendamento()%>')"></center></td>
+					<td><center><input type="submit" class="button-finalizar" name="finalizar" value="Finalizar" onclick="selectId('<%=agenda.get(i).getIdAgendamento()%>')"></center></td>
 			</tr>
 			
 		<% }}
