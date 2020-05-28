@@ -102,7 +102,8 @@ res = null;
                 </div>
                 
           </div>
-           
+           <br>
+           <br>
            <div class="row">
 				<div class="section-title">
 				        <h4>Dados Consulta</h4>
