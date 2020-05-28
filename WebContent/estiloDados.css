@@ -1619,10 +1619,21 @@ input, button, select, textarea {
   margin-bottom: 20px;
 }
 
-.form-group input, .contact-area textarea {
+.form-group input {
   position: relative;
   width: 25%;
   height: 30px;
+  color: #777777;
+  padding: 10px 25px;
+  background: #f4f4f4;
+  display: block;
+  border: 1px solid #ececec;
+}
+
+ .form-group textarea {
+  position: relative;
+  width: 30%;
+  height: 50px;
   color: #777777;
   padding: 10px 25px;
   background: #f4f4f4;
