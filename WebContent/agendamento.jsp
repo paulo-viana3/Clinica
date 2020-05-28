@@ -21,7 +21,7 @@ function pegarData(param, nome1,nome2,nome3){
 	
 	 var d = document.getElementById("data");//get the combobox
 	 var selGate = d.value;
-	 
+	
 	 var e = document.getElementById("profissional");//get the combobox
 	 var selecionado = e.options[e.selectedIndex].value;
 	 
@@ -29,8 +29,7 @@ function pegarData(param, nome1,nome2,nome3){
 	 var selec = esp.options[esp.selectedIndex].value;
 	 
 	 location.href=param+"?"+nome1+"="+selec+"&"+nome2+"="+selGate+"&"+nome3+"="+selecionado;
-	 
-	 
+	  
 }
 
 </script>
@@ -41,6 +40,9 @@ function pegarData(param, nome1,nome2,nome3){
 </head>
 <body>
 <%
+Date data2 = new Date(System.currentTimeMillis());
+SimpleDateFormat formatarDate = new SimpleDateFormat("yyyy-MM-dd");
+
 String res = null;
 
 res = String.valueOf(request.getAttribute("resultado"));
@@ -153,9 +155,9 @@ res = null;
                 		String data1 = request.getParameter("data");
                 		if (data1 == null) {
                 	%>
-                    <input type="date" name="data" id="data" onchange="pegarData('agendamento.jsp','id','data','medico')">
+                    <input type="date" name="data" id="data" min="<%=formatarDate.format(data2)%>" onchange="pegarData('agendamento.jsp','id','data','medico')">
                     <%	} else { %>
-                    <input type="date" name="data" id="data" value=<%=data1%>>
+                    <input type="date" name="data" id="data" value="<%=data1%>" onchange="pegarData('agendamento.jsp','id','data','medico')">
                     <% } %>
                 </div>
                

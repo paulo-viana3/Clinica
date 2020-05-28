@@ -48,17 +48,17 @@ public class BuscaAgendamento {
 		return agenda;
 	}	
 	
-	public ArrayList<Agendamento> buscaAgendamentoM(String crm) {
+	public ArrayList<Agendamento> buscaAgendamentoM(String crm,String data) {
 		
 		Connection conn = null;
 		Agendamento a;
-		
 		try {
-			String sql = "select a.idAgendamento,DATE_FORMAT(a.data,'%d/%m/%Y') as data,a.horario,p.nome from tbagendamento a join tbmedico m on m.idMedico = a.medico join tbpaciente p on p.idPaciente = a.paciente where m.crm = ? and a.status = 'A' order by a.data, a.horario";
+			String sql = "select a.idAgendamento,DATE_FORMAT(a.data,'%d/%m/%Y') as data,a.horario,p.nome from tbagendamento a join tbmedico m on m.idMedico = a.medico join tbpaciente p on p.idPaciente = a.paciente where m.crm = ? and a.data = ? and a.status = 'A' order by a.data, a.horario";
 			conn = Conexao.getConexaoMySQL();
 			PreparedStatement psmt = conn.prepareStatement(sql);
-			
+			System.out.println(data);
 			psmt.setString(1, crm);
+			psmt.setString(2, data);
 			ResultSet rs = psmt.executeQuery();
 			
 			while (rs.next()) {

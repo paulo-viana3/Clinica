@@ -1,6 +1,6 @@
 <%@page language="java"  contentType="text/html ; charset=UTF-8" 
 pageEncoding="UTF-8"
-import="dao.BuscaAgendamento , java.util.* , controller.CancelarConsultaS,model.Agendamento, dao.LoginMedico"
+import="dao.BuscaAgendamento , java.util.* , java.text.*, controller.CancelarConsultaS,model.Agendamento, dao.LoginMedico"
 %>
 <!DOCTYPE html>
 <html>
@@ -51,6 +51,19 @@ function selectId(id){
 </script>
 </head>
 <body>
+<script>
+function pegarData(param,nome1){
+	
+	 var d = document.getElementById("data");//get the combobox
+	 var selGate = d.value;
+	
+	 document.getElementById('datasel').value = selGate;
+	 
+	 location.href=param+"?"+nome1+"="+selGate;
+	  
+}
+
+</script>
 <%
 	String crm = String.valueOf(request.getSession().getAttribute("crm"));
 	String cpf = String.valueOf(request.getSession().getAttribute("cpf"));
@@ -66,7 +79,18 @@ function selectId(id){
 %>
 
 <%
+
 String res = null;
+String data = request.getParameter("id");
+
+
+if(data == null){
+	Date data2 = new Date(System.currentTimeMillis());
+	SimpleDateFormat formatarDate = new SimpleDateFormat("yyyy-MM-dd");
+	
+    data = formatarDate.format(data2);
+	
+}
 
 res = String.valueOf(request.getAttribute("resultado"));
 
@@ -114,6 +138,14 @@ res = null;
 	</div>
 	<br>
 	<br>
+	<div class="form-group">
+	<% if(cpf.equals("null")){
+	%>
+		<input type="date" name="data" id="data" value="<%=data%>" onchange="pegarData('meusAgendamentos.jsp','id')">
+	<% } %>
+	<input type="hidden" name="datasel" id="datasel" value="">
+	</div>
+	
 	<form action="<%=action%>" method="POST">
 	<input type="hidden" name="idagenda" id="idagenda" value="">
 	
@@ -139,12 +171,12 @@ res = null;
 		<%} %>
 		<%
 			if(crm != "null"){
-				agenda = bt.buscaAgendamentoM(crm);
+				agenda = bt.buscaAgendamentoM(crm, data);
 		%>
 			<th class="titulo-coluna">Data Consulta</th>
 			<th class="titulo-coluna">Horário</th>
 			<th class="titulo-coluna">Nome Paciente</th>
-			<th class="titulo-coluna">Informações</th>
+			<th class="titulo-coluna">Ir Para</th>
 		<%} %>
 		</tr>
 	<%
@@ -177,7 +209,7 @@ res = null;
 		            <td><%=agenda.get(i).getDataformatada()%></td>
 					<td><%=agenda.get(i).getHorario()%></td>
 					<td><%=agenda.get(i).getNomePaciente()%></td>
-					<td><center><input type="submit" class="button-finalizar" name="finalizar" value="Finalizar" onclick="selectId('<%=agenda.get(i).getIdAgendamento()%>')"></center></td>
+					<td><center><input type="submit" class="button-finalizar" name="finalizar" value="Consulta" onclick="selectId('<%=agenda.get(i).getIdAgendamento()%>')"></center></td>
 			</tr>
 			
 		<% }}
