@@ -140,7 +140,7 @@ input, button, select, textarea {
 .section-title h4 {
   font-size: 20px;
   line-height: 25px;
-  color: #222222;
+  color: #48bdc5;
   font-weight: 700;
   font-family: "Source Sans Pro", sans-serif;
 }
@@ -1630,17 +1630,6 @@ input, button, select, textarea {
   border: 1px solid #ececec;
 }
 
- .form-group textarea {
-  position: relative;
-  width: 30%;
-  height: 50px;
-  color: #777777;
-  padding: 10px 25px;
-  background: #f4f4f4;
-  display: block;
-  border: 1px solid #ececec;
-}
-
 .form-group{
 	 padding: 5px 20px;
 }
@@ -1668,6 +1657,17 @@ input, button, select, textarea {
 
 .contact-area .form-group option:hover {
   background: #7b64cb;
+}
+
+.form-group input, .contact-area textarea {
+  position: relative;
+  width: 25%;
+  height: 30px;
+  color: #777777;
+  padding: 10px 25px;
+  background: #f4f4f4;
+  display: block;
+  border: 1px solid #ececec;
 }
 
 .contact-area textarea {

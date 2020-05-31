@@ -52,7 +52,6 @@ public class AgendarConsulta {
 			pstm.setString(1, a.getDiagnostico());
 			pstm.setString(2, a.getPrescricao());
 			pstm.setInt(3,  a.getIdAgendamento());
-			System.out.println(a.getDiagnostico() + a.getPrescricao() + a.getIdAgendamento());
 			pstm.execute();
 
 		} catch (SQLException e) {

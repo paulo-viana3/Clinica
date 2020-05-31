@@ -22,8 +22,6 @@ public class LoginMedicoS extends HttpServlet {
 
 		String crm = request.getParameter("crm");
 		String senha = request.getParameter("senha");
-		System.out.println(crm);
-		System.out.println(senha);
 		
 		Medico m = new Medico();
 		LoginMedico loginBD = new LoginMedico();

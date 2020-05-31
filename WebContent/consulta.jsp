@@ -6,6 +6,18 @@
 <link rel="icon" href="images/icone.png" type="image/icon">
 <link rel="stylesheet" type="text/css" href="estiloDados.css"
 	media="screen" />
+<style>
+ .form-group textarea {
+  position: relative;
+  width: 25%;
+  height: 80px;
+  color: #777777;
+  padding: 10px 25px;
+  background: #f4f4f4;
+  display: block;
+  border: 1px solid #ececec;
+}
+</style>
 <script>
 
 function mascaraData(i){
@@ -74,54 +86,45 @@ res = null;
 	</nav>
 	<br>
 	<br>
-	<section class="hero">
-		<center>
-			<div class="section-title">
-				<h3>Consulta</h3>
-			</div>
-	</section>
 	<section class="form">
 		<center>
-			<br>
-
 			<form name="contact_form" class="default-form contact-form"
 				action="finalizaConsulta" method="POST">
+				<div class="section-title">
+						<h4>Dados Paciente</h4>
+				</div>
+				<br>
 				<div class="row">
 					<input type="hidden" name="idagenda" id="idagenda"
 						value="<%=idAgenda%>">
-					<div class="section-title">
-						<h4>Dados Paciente</h4>
-					</div>
 					<div class="form-group mb-2">
 						<input type="text" name="nome" value="<%=p.getNome()%>"
 							readonly=“true” placeholder="Nome">
 					</div>
-
 					<div class="form-group mb-2">
 						<input type="text" name="cpf" value="<%=p.getCpf()%>"
 							readonly=“true” placeholder="CPF">
 					</div>
-
 					<div class="form-group mb-2">
 						<input oninput="mascaraData(this)" type="text" readonly=“true”
 							name="data" value="<%=p.getDataFormatada()%>"
 							placeholder="Data de Nascimento">
 					</div>
-
 				</div>
-				<br> <br>
+				<br>
 				<div class="row">
 					<div class="section-title">
 						<h4>Dados Consulta</h4>
 					</div>
+					<br>
 					<div class="form-group mb-2">
 						<textarea name="diagnostico" rows="6" cols="64"
-							placeholder="Diagnóstico"></textarea>
+							placeholder="Diagnóstico" style="resize: none"></textarea>
 					</div>
 
 					<div class="form-group mb-2">
 						<textarea name="prescricao" rows="6" cols="64"
-							placeholder="Prescrição"></textarea>
+							placeholder="Prescrição" style="resize: none"></textarea>
 					</div>
 
 				</div>
@@ -131,7 +134,7 @@ res = null;
 
 				</div>
 			</form>
-		</center>
+			</center>
 	</section>
 </body>
 </html>

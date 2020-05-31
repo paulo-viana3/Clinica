@@ -31,7 +31,6 @@ public class BuscaMedico {
 				
 				esp.add(m);
 			}
-			//System.out.println(esp.size());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
