@@ -28,7 +28,6 @@ import="dao.BuscaAgendamento , java.util.* , java.text.*, controller.CancelarCon
   -o-transition: all 0.5s ease;
   border-radius: 5px;
 }
-
 .button-finalizar:hover{
   font-weight: bold;
   color: #48bdc5;
