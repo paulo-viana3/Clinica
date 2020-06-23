@@ -13,7 +13,7 @@ public class CancelarConsulta {
 		
 		try {
 			
-			String sql = "update tbagendamento set status = 'C' where idagendamento = ?";
+			String sql = "delete from tbagendamento where idagendamento = ?";
 			
 			conn = Conexao.getConexaoMySQL();
 			

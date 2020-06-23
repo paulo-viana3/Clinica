@@ -102,7 +102,7 @@ if(res.equals("false")){
 
 }else if(res.equals("true")){
 	out.print("<script>"); 
-	out.print("alert('Consulta finalizada com sucesso');"); 
+	out.print("alert('Consulta cancelada com sucesso');"); 
 	out.print("</script>");
 
 }else{
@@ -136,6 +136,15 @@ res = null;
 	<div class="section-title">
 	       <h3>Meus Agendamentos</h3>
 	</div>
+	<form name="proc" id="proc" method="POST" action="procedure">
+	
+	<% 	if(cpf != "null"){	
+	%>
+		<input type="submit" value="Apagar Registros Antigos" name="botao">
+	<%} %>
+		
+	</form>
+	
 	<br>
 	<br>
 	<div class="form-group">
@@ -155,6 +164,7 @@ res = null;
 		<%
 			BuscaAgendamento bt = new BuscaAgendamento();
 			ArrayList<Agendamento> agenda = new ArrayList<Agendamento>();
+			int total = 0;
 			if(cpf != "null"){
 					
 				agenda = bt.buscaAgendamento(cpf);
@@ -172,6 +182,7 @@ res = null;
 		<%
 			if(crm != "null"){
 				agenda = bt.buscaAgendamentoM(crm, data);
+				total = bt.buscaTotalAgendamento(crm, data);
 		%>
 			<th class="titulo-coluna">Data Consulta</th>
 			<th class="titulo-coluna">Horário</th>
@@ -216,6 +227,11 @@ res = null;
 		%>
 
 	</table>
+	<%
+	if(crm != "null"){	
+	%>
+		<h1><%=total%> Registros Encontrados</h1>
+	<%} %>
 	</form>
 </center>
 </section>

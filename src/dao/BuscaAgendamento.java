@@ -48,6 +48,32 @@ public class BuscaAgendamento {
 		return agenda;
 	}	
 	
+	public int buscaTotalAgendamento(String crm,String data) {
+		
+		int total = 0;
+		Connection conn = null;
+		
+		try {
+			String sql = "select COUNT(idAgendamento) AS 'total' from tbagendamento a join tbmedico m on m.idMedico = a.medico  where m.crm = ? and a.data = ? and a.status = 'A'";
+			conn = Conexao.getConexaoMySQL();
+			PreparedStatement psmt = conn.prepareStatement(sql);
+			psmt.setString(1, crm);
+			psmt.setString(2, data);
+			ResultSet rs = psmt.executeQuery();
+			
+			while (rs.next()) {
+				
+				total = rs.getInt("total");
+	
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Conexao.FecharConexao();
+		}
+		return total;
+	}	
+
 	public ArrayList<Agendamento> buscaAgendamentoM(String crm,String data) {
 		
 		Connection conn = null;

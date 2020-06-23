@@ -1,7 +1,40 @@
+-- phpMyAdmin SQL Dump
+-- version 4.9.2
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Tempo de geração: 23-Jun-2020 às 03:12
+-- Versão do servidor: 10.4.10-MariaDB
+-- versão do PHP: 7.1.33
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Banco de dados: `bdclinica`
 --
+
+DELIMITER $$
+--
+-- Procedimentos
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deletaAntigo` (IN `id` INT)  BEGIN
+	delete from tbagendamento where paciente = id AND data <CURRENT_DATE()-30;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deletaRegistros` (IN `id` INT)  BEGIN
+	delete from tbagendamento where paciente = id AND data < date_sub(curdate(), interval 1 month);
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -18,20 +51,22 @@ CREATE TABLE `tbagendamento` (
   `horario` varchar(10) NOT NULL,
   `diagnostico` varchar(300) DEFAULT NULL,
   `prescricao` varchar(300) DEFAULT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `tbagendamento`
 --
 
 INSERT INTO `tbagendamento` (`idAgendamento`, `data`, `medico`, `paciente`, `status`, `horario`, `diagnostico`, `prescricao`) VALUES
-(1, '2020-05-20', 3, 1, 'A', '11:00', NULL, NULL),
-(2, '2020-05-21', 2, 1, 'A', '12:00', NULL, NULL),
 (3, '2020-05-22', 0, 15, 'A', '1', '', ''),
 (4, '2020-05-22', 0, 15, 'A', '1', '', ''),
 (5, '2020-05-23', 1, 15, 'A', '14:30', '', ''),
 (6, '2020-05-23', 1, 15, 'A', '10:00', '', ''),
-(7, '2020-05-24', 1, 15, 'A', '18:00', '', '');
+(7, '2020-05-24', 1, 15, 'A', '18:00', '', ''),
+(8, '2020-05-29', 5, 1, 'C', '12:30', '', ''),
+(9, '2020-05-30', 1, 1, 'F', '17:30', 'Virose.', 'Dipirona.'),
+(10, '2020-05-24', 4, 1, 'A', '15:00', '', ''),
+(11, '2020-05-31', 5, 1, 'C', '14:00', '', '');
 
 -- --------------------------------------------------------
 
@@ -42,7 +77,7 @@ INSERT INTO `tbagendamento` (`idAgendamento`, `data`, `medico`, `paciente`, `sta
 CREATE TABLE `tbatendente` (
   `idAtendente` int(11) NOT NULL,
   `idPessoa` int(11) NOT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -57,7 +92,7 @@ CREATE TABLE `tbconsulta` (
   `prescricao` text NOT NULL,
   `diasAtestado` int(11) NOT NULL,
   `status` char(1) NOT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -68,7 +103,7 @@ CREATE TABLE `tbconsulta` (
 CREATE TABLE `tbespecialidade` (
   `idEspecialidade` int(11) NOT NULL,
   `nomeEspecialidade` varchar(100) NOT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `tbespecialidade`
@@ -90,7 +125,7 @@ INSERT INTO `tbespecialidade` (`idEspecialidade`, `nomeEspecialidade`) VALUES
 CREATE TABLE `tbhorario` (
   `idHorario` int(11) NOT NULL,
   `horario` varchar(10) NOT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `tbhorario`
@@ -127,18 +162,18 @@ CREATE TABLE `tbmedico` (
   `crm` int(11) NOT NULL,
   `idEspecialidade` int(11) NOT NULL,
   `senha` varchar(20) NOT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `tbmedico`
 --
 
-INSERT INTO `tbmedico` (`idMedico`, `nomeMedico`, `crm`, `idEspecialidade`) VALUES
-(1, 'Drª Sarah Carvalho', 15626, 1),
-(2, 'Drº Matheus Zelli', 13695, 2),
-(3, 'Drº Paulo Viana', 84656, 3),
-(4, 'Drª Sabrina Sato', 65426, 4),
-(5, 'Drº Marcos Abreu', 84123, 5);
+INSERT INTO `tbmedico` (`idMedico`, `nomeMedico`, `crm`, `idEspecialidade`, `senha`) VALUES
+(1, 'Drª Sarah Carvalho', 15626, 1, '12345'),
+(2, 'Drº Matheus Zelli', 13695, 2, ''),
+(3, 'Drº Paulo Viana', 84656, 3, ''),
+(4, 'Drª Sabrina Sato', 65426, 4, ''),
+(5, 'Drº Marcos Abreu', 84123, 5, '');
 
 -- --------------------------------------------------------
 
@@ -154,7 +189,7 @@ CREATE TABLE `tbpaciente` (
   `dataNasc` date NOT NULL,
   `senha` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `tbpaciente`
@@ -222,7 +257,7 @@ ALTER TABLE `tbpaciente`
 -- AUTO_INCREMENT de tabela `tbagendamento`
 --
 ALTER TABLE `tbagendamento`
-  MODIFY `idAgendamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idAgendamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de tabela `tbatendente`
@@ -261,3 +296,6 @@ ALTER TABLE `tbpaciente`
   MODIFY `idPaciente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
