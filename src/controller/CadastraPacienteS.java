@@ -33,8 +33,8 @@ public class CadastraPacienteS extends HttpServlet {
         String senha = request.getParameter("confirm_password");
         
 		
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-		java.sql.Date dataFormat = new java.sql.Date(format.parse(data).getTime());
+	SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+	java.sql.Date dataFormat = new java.sql.Date(format.parse(data).getTime());
 		
         p.setNome(nome);
         p.setCpf(cpf);
