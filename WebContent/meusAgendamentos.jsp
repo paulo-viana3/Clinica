@@ -139,7 +139,8 @@ res = null;
 	
 	<% 	if(cpf != "null"){	
 	%>
-		<input type="submit" value="Apagar Registros Antigos" name="botao">
+	<br><br>
+		<input type="submit" class="button-cancelar" value="Apagar Registros Antigos" name="botao">
 	<%} %>
 		
 	</form>
